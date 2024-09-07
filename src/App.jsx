@@ -2,26 +2,13 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import { Footer, Navbar } from "./components";
 import { About, Contact, Home, Projects } from "./pages";
-import { useEffect, useMemo, useState } from "react";
-import { SiteLang } from "./context/LangContext";
+import { LangProvider } from "./context/LangContext";
 
 const App = () => {
 
-  const [lang, setLang] = useState('en');
-  
-  useEffect(() => {
-    
-    const browser_lang = window.navigator.language.substring(0,2);
-    
-    browser_lang == 'ru' || browser_lang == 'ka' || browser_lang == 'en' ? setLang(browser_lang) : setLang('en')
-    
-  }, []);
-  
-  const value = useMemo(() => ({ lang, setLang }), [lang]);
-
   return (
-    <SiteLang.Provider value={value}>
     <main className='bg-slate-300/20'>
+      <LangProvider>
         <Router>
           <Navbar />
           <Routes>
@@ -41,8 +28,8 @@ const App = () => {
             />
           </Routes>
         </Router>
+      </LangProvider>
     </main>
-    </SiteLang.Provider>
   );
 };
 

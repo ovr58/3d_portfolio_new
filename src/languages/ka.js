@@ -40,16 +40,13 @@ const herotext = {
 
 const navLinks = [
   {
-    id: 'about',
-    title: 'Ჩემს შესახებ',
+    about: 'Ჩემს შესახებ',
   },
   {
-    id: 'work',
-    title: 'სამუშაოები',
+    work: 'სამუშაოები',
   },
   {
-    id: 'contact',
-    title: 'კავშირი',
+    contact: 'კავშირი',
   },
 ];
 

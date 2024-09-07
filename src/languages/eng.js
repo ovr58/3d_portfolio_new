@@ -40,16 +40,13 @@ const herotext = {
 
 const navLinks = [
   {
-    id: 'about',
-    title: 'About',
+    about: 'About',
   },
   {
-    id: 'work',
-    title: 'Work',
+    work: 'Work',
   },
   {
-    id: 'contact',
-    title: 'Contact',
+    contact: 'Contact',
   },
 ];
 

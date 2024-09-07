@@ -1,57 +1,101 @@
-import { useState, useMemo, useContext } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import { localize } from '../utils/Translation';
 import LangMenu from '../utils/LangMenu';
 import { logo, menu, close } from '../assets';
-import { SiteLang } from '../context/LangContext';
+import { useLang } from '../context/LangContext';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = () => {
-  const { lang } = useContext(SiteLang);
-  const [toggle, setToggle] = useState(false);
+const NavigationLinks = ({mode}) => {
+
+  const { lang } = useLang();
+
   const navLinks = useMemo(() => localize(lang, 'navLinks'), [lang]);
+
+  return (
+    <ul className="list-none hidden sm:flex flex-row gap-10">
+      <li>
+        <NavLink key={'aboutFull'} to={`/about`} aria-label={`#about`} className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
+          {navLinks[0].about}
+        </NavLink>
+      </li>
+      <li>
+        <NavLink key={'workFull'} to={`/projects`} aria-label={`#projects`} className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
+          {navLinks[1].work}
+        </NavLink>
+      </li>
+      <li>
+        <NavLink key={'contactFull'} to={`/contact`} aria-label={`#contact`} className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
+          {navLinks[2].contact}
+        </NavLink>
+      </li>
+    </ul>
+  )
+}
+
+const Navbar = () => {
+  const [toggle, setToggle] = useState(false)
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [])
 
   return (
     <header className='header'>
       <NavLink to='/'>
-        <img src={logo} alt='logo' className='w-18 h-18 object-contain' />
+        <img src={logo} alt='logo' className='w-10 h-10 rounded-lg bg-white items-center justify-center flex font-bold shadow-md'/>
       </NavLink>
     <nav className='flex text-lg gap-7 font-medium'>
-      <NavLink to='/about' className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
-        About
-      </NavLink>
-      <NavLink to='/projects' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
-        Projects
-      </NavLink>
-      <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-        <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((link) => (
-            <NavLink key={link.id} to={`/${link.id}`} aria-label={`#${link.title}`} className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
-              {link.title}
-            </NavLink>
-          ))}
-        </ul>
-        <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
-            onClick={() => setToggle(!toggle)}
-            />
+      <div className="w-full flex justify-between items-center mx-auto">
+        {windowWidth >=640 ? <NavigationLinks mode={'list-none flex flex-row gap-10'} /> : 
+        <div className="flex flex-1 justify-end items-center cursor-pointer" onClick={() => setToggle(!toggle)}>
+          <div className={`grid place-content-center w-16 h-16 p-6 mx-auto ${toggle ? 'hamburger-toggle' : ''}`} >
           <div
-            className={`${
-              !toggle ? 'hidden' : 'flex'
-            } p-6 bg-white absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl grid grid-cols-1`}
-            >
-            <ul className="list-none flex justify-end flex-col gap-4">
-              {navLinks.map((link) => (
-                <NavLink key={link.id} to={`/${link.id}`} aria-label={`#${link.title}`} onClick={setToggle(false)} className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
-                  {link.title}
-                </NavLink>
-              ))}
-            </ul>
+            className="
+              w-12
+              h-2 
+              bg-black 
+              rounded-full 
+              transition-all 
+              duration-150 
+              before:content-[''] 
+              before:absolute 
+              before:w-12 
+              before:h-2 
+              before:bg-black 
+              before:rounded-full 
+              before:-translate-y-4 
+              before:transition-all 
+              before:duration-150 
+              after:content-[''] 
+              after:absolute 
+              after:w-12 
+              after:h-2 
+              after:bg-black 
+              after:rounded-full 
+              after:translate-y-4 
+              after:transition-all 
+              after:duration-150
+            "
+          ></div>
           </div>
-        </div>
+          {toggle ?
+           <div
+            className='p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl grid grid-cols-1'
+            >
+            <NavigationLinks mode={'list-none flex justify-end flex-col gap-4'} />
+          </div> : ''}
+        </div>}
       </div>
       <LangMenu />
     </nav>

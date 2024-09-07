@@ -1,3 +1,4 @@
-import { SiteLang } from "./LangContext";
+import { useLang } from "./LangContext";
+import { LangProvider } from "./LangContext";
 
-export { SiteLang }
+export { useLang, LangProvider }
