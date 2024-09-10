@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import SuspenseVisual from "./SuspenseVisual";
 
-export { Navbar, Footer }
+export { Navbar, Footer, SuspenseVisual }

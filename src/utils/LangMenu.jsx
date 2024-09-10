@@ -1,6 +1,5 @@
-import { Fragment } from 'react';
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
 import { ru, ka, en } from '../assets';
 import { useLang } from '../context/LangContext';
@@ -8,119 +7,86 @@ import { useLang } from '../context/LangContext';
 const LangMenu = () => {
   const { lang, setLang } = useLang();
   return (
-    <div className="top-16 w-20">
-      <Listbox value={lang} onChange={setLang}>
-        <div className="relative mt-1">
-          <ListboxButton
-            title="language choose"
-            className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-1 py-1 text-sm font-semibold text-gray-900 shadow-sm"
+    <Menu>
+      <MenuButton className="inline-flex items-center gap-2 rounded-md bg-slate-100 py-1.5 px-3 text-sm/6 font-semibold text-black shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-slate-300 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+        <span className="w-7">
+            <img
+              className='w-7 h-7'
+              src={lang === 'en' ? en : lang === 'ru' ? ru : ka}
+              alt={lang}
+            />
+          </span>
+          <span className="">
+            <ChevronUpDownIcon
+              className="h-7 w-7 text-black"
+              aria-hidden="true"
+            />
+          </span>
+      </MenuButton>
+      <MenuItems 
+        anchor="bottom end"
+        transition
+        className="origin-top transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+      >
+        <MenuItem>
+          <button 
+            className={`
+              ${lang === 'ru' ? 'bg-blue-500' : ''}
+              group 
+              flex w-full 
+              items-center 
+              gap-2 
+              rounded-lg 
+              py-1.5 
+              px-3 
+              data-[focus]:bg-blue-200
+            `}
+            onClick={() => setLang('ru')}
           >
-            <span className="block truncate">
-              <img
-                src={lang === 'en' ? en : lang === 'ru' ? ru : ka}
-                alt={lang}
-              />
-            </span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-start pr-2">
-              <ChevronUpDownIcon
-                className="h-5 w-5 text-white"
-                aria-hidden="true"
-              />
-            </span>
-          </ListboxButton>
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
+            <img src={ru} className="size-4 fill-white/30" alt="Russian" />
+            RU
+          </button>
+        </MenuItem>
+        <MenuItem>
+        <button 
+            className={`
+              ${lang === 'ka' ? 'bg-blue-500' : ''}
+              group 
+              flex w-full 
+              items-center 
+              gap-2 
+              rounded-lg 
+              py-1.5 
+              px-3 
+              data-[focus]:bg-blue-200
+            `}
+            onClick={() => setLang('ka')}
           >
-            <ListboxOptions className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-transparent py-1 text-base shadow-lg focus:outline-none sm:text-sm">
-              <ListboxOption
-                key="ka"
-                className={({ selected }) =>
-                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                    selected ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
-                  }`
-                }
-                value="ka"
-              >
-                {({ selected }) => (
-                  <>
-                    <span
-                      className={`block truncate ${
-                        selected ? 'font-medium' : 'font-normal'
-                      }`}
-                    >
-                      <img src={ka} alt="Georgian" />
-                    </span>
-                    {selected ? (
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                      </span>
-                    ) : null}
-                  </>
-                )}
-              </ListboxOption>
-              <ListboxOption
-                key="en"
-                className={({ selected }) =>
-                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                    selected ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
-                  }`
-                }
-                value="en"
-              >
-                {({ selected }) => (
-                  <>
-                    <span
-                      className={`block truncate ${
-                        selected ? 'font-medium' : 'font-normal'
-                      }`}
-                    >
-                      <img src={en} alt="English" />
-                    </span>
-                    {selected ? (
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                      </span>
-                    ) : null}
-                  </>
-                )}
-              </ListboxOption>
-              <ListboxOption
-                key="ru"
-                className={({ selected }) =>
-                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                    selected ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
-                  }`
-                }
-                value="ru"
-              >
-                {({ selected }) => (
-                  <>
-                    <span
-                      className={`block truncate ${
-                        selected ? 'font-medium' : 'font-normal'
-                      }`}
-                    >
-                      <img src={ru} alt="Russian" />
-                    </span>
-                    {selected ? (
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                      </span>
-                    ) : null}
-                  </>
-                )}
-              </ListboxOption>
-            </ListboxOptions>
-          </Transition>
-        </div>
-      </Listbox>
-    </div>
+            <img src={ka} className="size-4 fill-white/30" alt="Georgian" />
+            KA
+          </button>
+        </MenuItem>
+        <MenuItem>
+          <button 
+            className={`
+              ${lang === 'en' ? 'bg-blue-500' : ''}
+              group 
+              flex w-full 
+              items-center 
+              gap-2 
+              rounded-lg 
+              py-1.5 
+              px-3 
+              data-[focus]:bg-blue-200
+            `}
+            onClick={() => setLang('en')}
+          >
+            <img src={en} className="size-4 fill-white/30" alt="English" />
+            EN
+          </button>
+        </MenuItem>
+      </MenuItems>
+    </Menu>
   );
 };
 
