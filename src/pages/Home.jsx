@@ -1,32 +1,46 @@
 import { Canvas } from "@react-three/fiber"
-import { Suspense, useEffect, useState } from "react"
-import { SuspenseVisual } from "../components"
+import { Suspense, useEffect, useRef, useState } from "react"
+import { AvatarController, SuspenseVisual } from "../components"
 import Cottage from "../models/Cottage"
-import { Environment } from "@react-three/drei"
+import { Environment, OrthographicCamera, Preload } from "@react-three/drei"
 import SkyAndClouds from "../models/SkyAndClouds"
-import NataliAvatar from "../models/AvatarNatali"
+import PlaneModel from "../models/PlaneModel"
+import { Physics } from "@react-three/rapier"
+import { KeyboardControls } from "@react-three/drei"
+
+const keyboardMap = [
+  { name: "forward", keys: ["ArrowUp", "KeyW"] },
+  { name: "backward", keys: ["ArrowDown", "KeyS"] },
+  { name: "left", keys: ["ArrowLeft", "KeyA"] },
+  { name: "right", keys: ["ArrowRight", "KeyD"] },
+  { name: "run", keys: ["Shift"] },
+]
 
 function Home() {
 
-  const adjustToScreenSize = () => {
-    let screenScale, screenPosition;
+  const shadowCameraRef = useRef()
+  const [isRotating, setIsRotating] = useState(false)
+  const [idlePoint, setIdlePoint] = useState([0, -6.5, -12])
 
-    if (window.innerWidth < 768) {
-      screenScale = [1.3, 1.3, 1.3];
-      screenPosition = [0, -6.5, -43.4];
+  const adjustBiplaneForScreenSize = () => {
+    let screenScale, screenPosition
+
+    if (window.innerWidth < 640) {
+      screenScale = [1.5, 1.5, 1.5];
+      screenPosition = [0, 1, 0];
     } else {
-      screenScale = [1.8, 1.8, 1.8];
-      screenPosition = [0, -6.5, -43.4];
+      screenScale = [3, 3, 3];
+      screenPosition = [0, 2, -4];
     }
 
-    return {screenScale, screenPosition};
+    return {screenScale, screenPosition}
   }
 
-  const [scaleAndPosition, setScaleAndPosition] = useState(adjustToScreenSize())
+  const [biPLaneScaleAndPosition, setBiPlaneScaleAndPosition] = useState(adjustBiplaneForScreenSize())
 
   useEffect(() => {
     const handleResize = () => {
-      setScaleAndPosition(adjustToScreenSize());
+      setBiPlaneScaleAndPosition(adjustBiplaneForScreenSize())
     };
 
     window.addEventListener('resize', handleResize);
@@ -38,31 +52,57 @@ function Home() {
 
   return (
     <section className='w-full h-screen realtive'>
-      <Canvas
-        shadows
-        camera={{ near: 0.1, far: 1000 }}
-        gl={{ preserveDrawingBuffer: true }}
-      >
-        <Suspense fallback={<SuspenseVisual />}>
-          <directionalLight 
-            position={[1,1,1]}
-            intensity={2}
-          />
-          <ambientLight intensity={0.5} />
-          <hemisphereLight skyColor='#b1e1ff' groundColor='#000000' intensity={1}/>
-          <Environment preset="park" />
-          <SkyAndClouds />
-          <Cottage 
-            scale = {scaleAndPosition.screenScale}
-            position = {scaleAndPosition.screenPosition}
-          />
-          <NataliAvatar
-            scale = {scaleAndPosition.screenScale}
-            position = {[0, -6.5,-12]}
-          />
-        </Suspense>
-        
-      </Canvas>
+      <KeyboardControls map={keyboardMap}>
+        <Canvas
+          className={`${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
+          shadows
+          camera={{ position: [3, 3, 3], near: 0.1, far: 1000, fov: 40 }}
+          style={{
+            touchAction: "none",
+          }}
+          gl={{ preserveDrawingBuffer: true }}
+        >
+          <Suspense fallback={<SuspenseVisual />}>
+            <directionalLight 
+              position={[-15, 10, 15]}
+              intensity={2}
+              castShadow
+              shadow-mapSize-width={2048}
+              shadow-mapSize-height={2048}
+              shadow-bias={-0.00005}
+            >
+              <OrthographicCamera
+                left={-22}
+                right={15}
+                top={10}
+                bottom={-20}
+                ref={shadowCameraRef}
+                attach={"shadow-camera"}
+              />
+            </directionalLight>
+            <ambientLight intensity={0.5} />
+            <hemisphereLight skyColor='#b1e1ff' groundColor='#000000' intensity={1}/>
+            <Environment preset="park" />
+            <SkyAndClouds isRotating={isRotating} />
+            <Physics debug key={'cottageMap'}>
+              <Cottage 
+                scale = {1.8}
+                position = {[-6, -7, 0]}
+              />
+              <AvatarController
+                scale = {1.8}
+              />
+            </Physics>
+            <PlaneModel
+              isRotating={isRotating}
+              scale={biPLaneScaleAndPosition.screenScale}
+              position={biPLaneScaleAndPosition.screenPosition}
+              rotation={[0,20,0.5]}
+            />
+          </Suspense>
+          <Preload all />
+        </Canvas>
+      </KeyboardControls>
     </section>
   )
 }
