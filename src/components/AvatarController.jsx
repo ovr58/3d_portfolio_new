@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react"
 import { MathUtils, Vector3 } from "three"
 import { degToRad } from "three/src/math/MathUtils.js"
 import NataliAvatar from "../models/NataliAvatar"
+import * as THREE from 'three'
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI
@@ -33,14 +34,23 @@ function AvatarController({...props}) {
     const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls(
         "Character Control",
         {
-          WALK_SPEED: { value: 0.8, min: 0.1, max: 4, step: 0.1 },
-          RUN_SPEED: { value: 1.6, min: 0.2, max: 12, step: 0.1 },
+          WALK_SPEED: { value: 2, min: 0.1, max: 20, step: 0.1 },
+          RUN_SPEED: { value: 6, min: 0.2, max: 120, step: 0.1 },
           ROTATION_SPEED: {
             value: degToRad(0.5),
             min: degToRad(0.1),
             max: degToRad(5),
             step: degToRad(0.1),
           },
+        }
+      )
+      const {CAMERA_X, CAMERA_Y, CAMERA_Z, CAMERA_TARGET} = useControls(
+        "Camera Control",
+        {
+          CAMERA_X: { value: -8, min: -80, max: 80, step: 1 },
+          CAMERA_Y: { value: 10, min: 0, max: 80, step: 1 },
+          CAMERA_Z: { value: 14, min: -80, max: 80, step: 1 },
+          CAMERA_TARGET: { value: 7.5, min: -80, max: 80, step: 0.1 }
         }
       )
       const rb = useRef()
@@ -61,10 +71,14 @@ function AvatarController({...props}) {
     
       useEffect(() => {
         const onMouseDown = (e) => {
-          isClicking.current = true
+            e.preventDefault()
+            e.stopPropagation()
+            isClicking.current = true
         }
         const onMouseUp = (e) => {
-          isClicking.current = false
+            e.preventDefault()
+            e.stopPropagation() 
+            isClicking.current = false
         }
         document.addEventListener("mousedown", onMouseDown)
         document.addEventListener("mouseup", onMouseUp)
@@ -80,101 +94,85 @@ function AvatarController({...props}) {
       }, [])
     
       useFrame(({ camera, pointer }) => {
+        const movement = new THREE.Vector3().set(0, 0, 0)
+        characterRotationTarget.current = Math.atan2(movement.x, movement.z)
+        let speed = 0
         if (rb.current) {
-          const vel = rb.current.linvel()
-    
-          const movement = {
-            x: 0,
-            z: 0,
-          }
-    
-          if (get().forward) {
-            movement.z = 1
-          }
-          if (get().backward) {
-            movement.z = -1
-          }
-    
-          let speed = get().run ? RUN_SPEED : WALK_SPEED
-    
-          if (isClicking.current) {
-            console.log("clicking", pointer.x, pointer.y)
-            if (Math.abs(pointer.x) > 0.1) {
-              movement.x = -pointer.x
+            const vel = rb.current.linvel()
+
+        
+            if (isClicking.current) {
+                console.log("clicking", pointer.x, pointer.y)
+                const start = new THREE.Vector3().set(-1.4, 0, 0)
+                const end = new THREE.Vector3().set(-1.4, 0, -41)
+                movement.copy(new THREE.Vector3().subVectors(end, start).normalize())
+                const diatance = start.distanceTo(end)
+                console.log('MOVEMENT - ', movement)
+                speed = WALK_SPEED
             }
-            movement.z = pointer.y + 0.4
-            if (Math.abs(movement.x) > 0.5 || Math.abs(movement.z) > 0.5) {
-              speed = RUN_SPEED
+
+            if (movement.x !== 0) {
+                rotationTarget.current += ROTATION_SPEED * movement.x
             }
-          }
-    
-          if (get().left) {
-            movement.x = 1
-          }
-          if (get().right) {
-            movement.x = -1
-          }
-    
-          if (movement.x !== 0) {
-            rotationTarget.current += ROTATION_SPEED * movement.x
-          }
-    
-          if (movement.x !== 0 || movement.z !== 0) {
-            characterRotationTarget.current = Math.atan2(movement.x, movement.z)
-            vel.x =
-              Math.sin(rotationTarget.current + characterRotationTarget.current) *
-              speed
-            vel.z =
-              Math.cos(rotationTarget.current + characterRotationTarget.current) *
-              speed
-            if (speed === RUN_SPEED) {
-              setAnimation("run")
+        
+            if (movement.x !== 0 || movement.z !== 0) {
+                characterRotationTarget.current = Math.atan2(movement.x, movement.z)
+                vel.x =
+                Math.sin(rotationTarget.current + characterRotationTarget.current) *
+                speed
+                vel.z =
+                Math.cos(rotationTarget.current + characterRotationTarget.current) *
+                speed
+                if (speed === RUN_SPEED) {
+                setAnimation("run")
+                } else {
+                setAnimation("walk")
+                }
             } else {
-              setAnimation("walk")
+                setAnimation("idle")
             }
-          } else {
-            setAnimation("idle")
-          }
-          character.current.rotation.y = lerpAngle(
-            character.current.rotation.y,
-            characterRotationTarget.current,
+            character.current.rotation.y = lerpAngle(
+                character.current.rotation.y,
+                characterRotationTarget.current,
+                0.1
+            )
+        
+            rb.current.setLinvel(vel, true)
+            }
+        
+            // CAMERA
+            container.current.rotation.y = MathUtils.lerp(
+            container.current.rotation.y,
+            rotationTarget.current,
             0.1
-          )
-    
-          rb.current.setLinvel(vel, true)
-        }
-    
-        // CAMERA
-        container.current.rotation.y = MathUtils.lerp(
-          container.current.rotation.y,
-          rotationTarget.current,
-          0.1
-        )
-    
-        cameraPosition.current.getWorldPosition(cameraWorldPosition.current)
-        camera.position.lerp(cameraWorldPosition.current, 0.1)
-    
-        if (cameraTarget.current) {
-          cameraTarget.current.getWorldPosition(cameraLookAtWorldPosition.current)
-          cameraLookAt.current.lerp(cameraLookAtWorldPosition.current, 0.1)
-    
-          camera.lookAt(cameraLookAt.current)
-        }
+            )
+        
+
+            
+            cameraPosition.current.getWorldPosition(cameraWorldPosition.current)
+            camera.position.lerp(cameraWorldPosition.current, 0.1)
+        
+            if (cameraTarget.current) {
+                cameraTarget.current.getWorldPosition(cameraLookAtWorldPosition.current)
+                cameraLookAt.current.lerp(cameraLookAtWorldPosition.current, 0.1)
+            
+                camera.lookAt(cameraLookAt.current)
+            }
       })
     
   return (
-    <RigidBody colliders={false} ref={rb}>
-        <group ref={container} position={[-15,0,7]}>
-            <group ref={cameraTarget} position-z={1.5} />
-            <group ref={cameraPosition} position-x={35} position-y={23} position-z={43} />
+    <RigidBody colliders={false} lockRotations ref={rb} position={[-1.4, 0, 0]}>
+        <group ref={container} >
+            <group ref={cameraTarget} position-y={CAMERA_TARGET} />
+            <group ref={cameraPosition} position-x={CAMERA_X} position-y={CAMERA_Y} position-z={CAMERA_Z} />
             <group ref={character}>
                 <NataliAvatar
-                    {...props} position={[0,-0.9,0]}
+                    {...props} position={[0,-1.6,0]}
                     animation={animation}
                 />
             </group>
         </group>
-        <CapsuleCollider args={[1.08, 1.15]} />
+        <CapsuleCollider args={[1.08, 0.8]} />
     </RigidBody>
   )
 }

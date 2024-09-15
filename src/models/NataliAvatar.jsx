@@ -17,7 +17,9 @@ const NataliAvatar = ({animation, ...props}) => {
 
   useEffect(() => {
     console.log(actions)
+
     actions[animation]?.reset().fadeIn(0.24).play();
+    actions[animation].timeScale = 1
     return () => actions?.[animation]?.fadeOut(0.24);
   }, [animation]);
 

@@ -56,7 +56,7 @@ function Home() {
         <Canvas
           className={`${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
           shadows
-          camera={{ position: [3, 3, 3], near: 0.1, far: 1000, fov: 40 }}
+          camera={{ position: [3, 3, 3], near: 0.1, far: 1000 }}
           style={{
             touchAction: "none",
           }}
@@ -87,7 +87,7 @@ function Home() {
             <Physics debug key={'cottageMap'}>
               <Cottage 
                 scale = {1.8}
-                position = {[-6, -7, 0]}
+                position = {[15, -7, -19]}
               />
               <AvatarController
                 scale = {1.8}
