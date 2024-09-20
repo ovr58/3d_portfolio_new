@@ -4,17 +4,13 @@ const SuspenseVisual = () => {
   const { progress } = useProgress();
   return (
     <Html>
-      <span className="canvas-loader"></span>
-      <p
-        style={{
-          fontSize: 14,
-          color: '#f1f1f1',
-          fontWeight: 800,
-          marginTop: 40,
-        }}
-      >
-        {progress.toFixed(2)}%
-      </p>
+      <div className='flex flex-col justify-center place-content-center'>
+        <div className="canvas-loader">
+        </div>
+        <div className='flex z-10 mt-12 text-2xl text-black font-extrabold '>
+          {progress.toFixed(0)}%
+        </div>
+      </div>
     </Html>
   );
 };

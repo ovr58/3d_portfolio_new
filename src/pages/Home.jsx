@@ -15,35 +15,14 @@ function Home() {
   const [ angle, setAngle ] = useState(new Vector3(-15, 6, 20).normalize())
 
   const coordinates = [
-      [
-          [-8, 10, 14],
-          [-15.6, -1.7, 20]
-      ],
-      [
-          [-11, 10, -10],
-          [-15.5, -1.7, -21]
-      ],
-      [
-          [-11, 10, -10],
-          [-10.4, -1.7, -20]
-      ],
-      [
-          [47, 10, -15],
-          [16, -1.7, -20]
-      ],
-      [
-        [47, 10, -15],
-        [14, -1.7, -8.2]
-      ],
-      [
-        [47, 10, -15],
-        [14, -1.7, 16.2]
-      ],
-      [
-        [43, 10, 46],
-        [-11, -1.7, 16.5]
-      ]
-    ]
+    [-15.6, -1.7, 20], 
+    [-15.5, -1.7, -21], 
+    [-10.4, -1.7, -20], 
+    [16, -1.7, -20], 
+    [14, -1.7, -8.2], 
+    [14, -1.7, 16.2], 
+    [-11, -1.7, 16.5]
+  ]
   const [isRotating, setIsRotating] = useState(false)
 
   return (
@@ -79,7 +58,7 @@ function Home() {
           <hemisphereLight skyColor='#b1e1ff' groundColor='#000000' intensity={1}/>
           <Environment preset="park" />
           <SkyAndClouds isRotating={isRotating} />
-          <Physics debug key={'cottageMap'}>
+          <Physics debug={false} key={'cottageMap'}>
             <Cottage 
               stage = {stage}
               setStage = {setStage}

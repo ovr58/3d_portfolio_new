@@ -10,15 +10,6 @@ function SkyAndClouds({ isRotating }) {
 
   const skyAndClouds = useGLTF(skyScene)
 
-  const {SKY_X, SKY_Y, SKY_Z} = useControls(
-    "SKY Control",
-        {
-          SKY_X: { value: -13.5, min: -360, max: 360, step: 0.1 },
-          SKY_Y: { value: 0, min: -360, max: 360, step: 0.1 },
-          SKY_Z: { value: 0, min: -360, max: 360, step: 0.1 },
-        }
-  )
-
   useFrame((_, delta) => {
     if (isRotating) {
       skyRef.current.rotation.y += 0.15 * delta

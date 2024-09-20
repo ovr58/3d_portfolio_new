@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 
@@ -9,22 +7,11 @@ import { CapsuleCollider, RigidBody } from '@react-three/rapier'
 
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useControls } from 'leva'
 
 
 const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, ...props }) => {
 
-  const {CAMERA_X, CAMERA_Y, CAMERA_Z} = useControls(
-    'camera position',
-    {
-      CAMERA_X: {value: -30, min: -100, max: 100, step: 0.1},
-      CAMERA_Y: {value: 15, min: 0, max: 100, step: 0.1},
-      CAMERA_Z: {value: 30, min: -100, max: 100, step: 0.1},
-    }
-  )
   const { gl, camera } = useThree()
-
-  const rotationSpeed = useRef(0)
   const cottageRef = useRef()
   const cameraTarget = useRef()
   const cameraPosition = useRef()
@@ -87,7 +74,7 @@ const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, .
           position: bbCenter,
           stageName: child.name.replace('IdlePoint', '')
         })
-        
+        child.visible = false
         
       }
       if (child.isMesh) {
@@ -96,7 +83,6 @@ const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, .
       }
     })
     setColliderPoints(colliderPointsArray)
-    console.log('collider points - ', colliderPointsArray)
   }, [cottageRef.current])
 
   useFrame(() => {
@@ -122,7 +108,7 @@ const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, .
       key={`group${colliderPoints.toString()}`}
     >
       <group ref={cameraTarget} position={[0, 9.5, 0]} />
-      <group ref={cameraPosition} position-x={CAMERA_X} position-y={CAMERA_Y} position-z={CAMERA_Z} />
+      <group ref={cameraPosition} position-x={-30} position-y={15} position-z={30} />
       <RigidBody type='fixed' colliders='trimesh' >
         <primitive object={scene} {...props} ref={cottageRef} />
       </RigidBody>
@@ -132,7 +118,7 @@ const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, .
             ref = {el => (sensorRef.current[i] = el)}
             key={`${i}sensor`}
             position={point.position}
-            args={[1, 1, 1]}
+            args={[0.6, 0.6]}
             name={point.stageName}
             sensor
             onIntersectionEnter={(other) => (setIsRotating(false), setStage(Number(other.target.colliderObject.name)-1))}
