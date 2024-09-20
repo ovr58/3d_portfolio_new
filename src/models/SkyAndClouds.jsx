@@ -26,7 +26,7 @@ function SkyAndClouds({ isRotating }) {
   })
 
   return (
-    <mesh ref={skyRef} rotation-x={SKY_X*(Math.PI/180)} rotation-y={SKY_Y*(Math.PI/180)} rotation-z={SKY_Z}>
+    <mesh ref={skyRef} >
         <primitive object={skyAndClouds.scene} />
     </mesh>
   )

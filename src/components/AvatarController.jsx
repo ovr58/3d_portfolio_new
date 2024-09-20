@@ -1,9 +1,7 @@
-import { useKeyboardControls } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { CapsuleCollider, RigidBody } from "@react-three/rapier"
 import { useControls } from "leva"
-import { useEffect, useRef, useState } from "react"
-import { MathUtils, Vector3 } from "three"
+import { useRef, useState } from "react"
 import { degToRad } from "three/src/math/MathUtils.js"
 import NataliAvatar from "../models/NataliAvatar"
 import * as THREE from 'three'
@@ -29,150 +27,102 @@ const lerpAngle = (start, end, t) => {
   return normalizeAngle(start + (end - start) * t)
 }
 
-function AvatarController({...props}) {
+function AvatarController({coordinates, stage, setStage, isRotating, setIsRotating, angle, setAngle, ...props}) {
 
-    const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls(
-        "Character Control",
-        {
-          WALK_SPEED: { value: 2, min: 0.1, max: 20, step: 0.1 },
-          RUN_SPEED: { value: 6, min: 0.2, max: 120, step: 0.1 },
-          ROTATION_SPEED: {
-            value: degToRad(0.5),
-            min: degToRad(0.1),
-            max: degToRad(5),
-            step: degToRad(0.1),
-          },
-        }
-      )
-      const {CAMERA_X, CAMERA_Y, CAMERA_Z, CAMERA_TARGET} = useControls(
-        "Camera Control",
-        {
-          CAMERA_X: { value: -8, min: -80, max: 80, step: 1 },
-          CAMERA_Y: { value: 10, min: 0, max: 80, step: 1 },
-          CAMERA_Z: { value: 14, min: -80, max: 80, step: 1 },
-          CAMERA_TARGET: { value: 7.5, min: -80, max: 80, step: 0.1 }
-        }
-      )
-      const rb = useRef()
-      const container = useRef()
-      const character = useRef()
-    
-      const [animation, setAnimation] = useState("idle")
-    
-      const characterRotationTarget = useRef(0)
-      const rotationTarget = useRef(0)
-      const cameraTarget = useRef()
-      const cameraPosition = useRef()
-      const cameraWorldPosition = useRef(new Vector3())
-      const cameraLookAtWorldPosition = useRef(new Vector3())
-      const cameraLookAt = useRef(new Vector3())
-      const [, get] = useKeyboardControls()
-      const isClicking = useRef(false)
-    
-      useEffect(() => {
-        const onMouseDown = (e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            isClicking.current = true
-        }
-        const onMouseUp = (e) => {
-            e.preventDefault()
-            e.stopPropagation() 
-            isClicking.current = false
-        }
-        document.addEventListener("mousedown", onMouseDown)
-        document.addEventListener("mouseup", onMouseUp)
-        // touch
-        document.addEventListener("touchstart", onMouseDown)
-        document.addEventListener("touchend", onMouseUp)
-        return () => {
-          document.removeEventListener("mousedown", onMouseDown)
-          document.removeEventListener("mouseup", onMouseUp)
-          document.removeEventListener("touchstart", onMouseDown)
-          document.removeEventListener("touchend", onMouseUp)
-        }
-      }, [])
-    
-      useFrame(({ camera, pointer }) => {
-        const movement = new THREE.Vector3().set(0, 0, 0)
-        characterRotationTarget.current = Math.atan2(movement.x, movement.z)
-        let speed = 0
-        if (rb.current) {
-            const vel = rb.current.linvel()
+  const[ rotationSpeed, setRotationSpeed ] = useState(0.02)
 
-        
-            if (isClicking.current) {
-                console.log("clicking", pointer.x, pointer.y)
-                const start = new THREE.Vector3().set(-1.4, 0, 0)
-                const end = new THREE.Vector3().set(-1.4, 0, -41)
-                movement.copy(new THREE.Vector3().subVectors(end, start).normalize())
-                const diatance = start.distanceTo(end)
-                console.log('MOVEMENT - ', movement)
-                speed = WALK_SPEED
-            }
+  const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls(
+      "Character Control",
+      {
+        WALK_SPEED: { value: 2, min: 0.1, max: 20, step: 0.1 },
+        RUN_SPEED: { value: 4, min: 0.2, max: 120, step: 0.1 },
+        ROTATION_SPEED: {
+          value: degToRad(0.5),
+          min: degToRad(0.1),
+          max: degToRad(5),
+          step: degToRad(0.1),
+        },
+      }
+    )
 
-            if (movement.x !== 0) {
-                rotationTarget.current += ROTATION_SPEED * movement.x
-            }
-        
-            if (movement.x !== 0 || movement.z !== 0) {
-                characterRotationTarget.current = Math.atan2(movement.x, movement.z)
-                vel.x =
-                Math.sin(rotationTarget.current + characterRotationTarget.current) *
-                speed
-                vel.z =
-                Math.cos(rotationTarget.current + characterRotationTarget.current) *
-                speed
-                if (speed === RUN_SPEED) {
-                setAnimation("run")
-                } else {
-                setAnimation("walk")
-                }
+  const rb = useRef()
+  const container = useRef()
+  const character = useRef()
+
+  const [animation, setAnimation] = useState("idle")
+  const characterRotationTarget = useRef(0)
+  const rotationTarget = useRef(0)
+
+  useFrame(() => {
+    const movement = new THREE.Vector3().set(0, 0, 0)
+    const nextStage = (stage + 1) > (coordinates.length - 1) ? 0 : (stage + 1)
+    const start = new THREE.Vector3().set(...coordinates[stage][1])
+    const end = new THREE.Vector3().set(...coordinates[nextStage][1])
+    characterRotationTarget.current = Math.atan2(movement.x, movement.z)
+    let speed = 0
+    if (rb.current) {
+        const vel = rb.current.linvel()
+
+    
+        if (isRotating) {
+          if (rotationSpeed === 0) setRotationSpeed(0.02)
+          movement.copy(new THREE.Vector3().subVectors(end, start).normalize())
+          const worldPosition = new THREE.Vector3()
+          container.current.getWorldPosition(worldPosition)
+          worldPosition.y= 7
+          const vectorA = new THREE.Vector3().copy(worldPosition).normalize()
+          // const vectorB = new THREE.Vector3().copy(start).normalize()
+          
+          const newAngle = vectorA
+          setAngle(newAngle)
+          speed = RUN_SPEED
+        } else {
+          setRotationSpeed(0)
+        }
+
+        // if (movement.x !== 0) {
+        //     rotationTarget.current += ROTATION_SPEED * movement.x
+        // }
+    
+        if (movement.x !== 0 || movement.z !== 0) {
+            characterRotationTarget.current = Math.atan2(movement.x, movement.z)
+            vel.x =
+            Math.sin(rotationTarget.current + characterRotationTarget.current) *
+            speed
+            vel.z =
+            Math.cos(rotationTarget.current + characterRotationTarget.current) *
+            speed
+            if (speed === RUN_SPEED) {
+            setAnimation("run")
             } else {
-                setAnimation("idle")
+            setAnimation("walk")
             }
-            character.current.rotation.y = lerpAngle(
-                character.current.rotation.y,
-                characterRotationTarget.current,
-                0.1
-            )
+        } else {
+            setAnimation("idle")
+        }
         
-            rb.current.setLinvel(vel, true)
-            }
-        
-            // CAMERA
-            container.current.rotation.y = MathUtils.lerp(
-            container.current.rotation.y,
-            rotationTarget.current,
+        character.current.rotation.y = lerpAngle(
+            character.current.rotation.y,
+            characterRotationTarget.current,
             0.1
-            )
-        
-
-            
-            cameraPosition.current.getWorldPosition(cameraWorldPosition.current)
-            camera.position.lerp(cameraWorldPosition.current, 0.1)
-        
-            if (cameraTarget.current) {
-                cameraTarget.current.getWorldPosition(cameraLookAtWorldPosition.current)
-                cameraLookAt.current.lerp(cameraLookAtWorldPosition.current, 0.1)
-            
-                camera.lookAt(cameraLookAt.current)
-            }
-      })
+        )
     
+        rb.current.setLinvel(vel, true)
+        }
+  })
+
   return (
-    <RigidBody colliders={false} lockRotations ref={rb} position={[-1.4, 0, 0]}>
+    <RigidBody linearDamping={0.3} position={[-16.5, 6.5, 20]} colliders={false} lockRotations ref={rb}>
         <group ref={container} >
-            <group ref={cameraTarget} position-y={CAMERA_TARGET} />
-            <group ref={cameraPosition} position-x={CAMERA_X} position-y={CAMERA_Y} position-z={CAMERA_Z} />
             <group ref={character}>
                 <NataliAvatar
-                    {...props} position={[0,-1.6,0]}
                     animation={animation}
+                    position={[0, -1.7, 0]}
+                    {...props}
                 />
             </group>
         </group>
-        <CapsuleCollider args={[1.08, 0.8]} />
+        <CapsuleCollider mass={69} args={[1.08, 0.6]} />
     </RigidBody>
   )
 }
