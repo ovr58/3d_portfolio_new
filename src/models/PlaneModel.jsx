@@ -4,13 +4,6 @@ import { useAnimations, useGLTF } from '@react-three/drei'
 import { Vector3 } from 'three'
 import { useFrame } from '@react-three/fiber'
 
-const calculateNewPosition = (x, z, radius, angle) => {
-
-  
-
-  return {xNew, zNew}
-}
-
 const PlaneModel = ({isRotating, ...props}) => {
 
   const planeRef = useRef()

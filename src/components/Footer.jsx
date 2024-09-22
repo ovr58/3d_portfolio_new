@@ -1,10 +1,9 @@
 
 function Footer() {
   return (
-    <footer>
-      <div className="flex flex-row justify-between">
-        <div></div>
-        <div className="px-6 pt-2">
+    <footer className = 'footer'>
+      <div className="footer-container">
+        <div className="hidden sm:flex px-6 pt-2">
           <div className="mb-2 flex justify-center">
             <a
               href="https://www.facebook.com/matveeva.natalya"
@@ -79,13 +78,13 @@ function Footer() {
             </a>
           </div>
         </div>
-      </div>
-      <div className="p-4 text-center bg-slate-400">
-        © 2024 Copyright:
-        <a className="text-whitehite" href="" aria-label="my link">
-          {' '}
-          Nataly Dreams
-        </a>
+        <div className="p-4 text-center bg-slate-400">
+          <a className="text-black" href="" aria-label="my link">
+            © 2024 Copyright:
+            {' '}
+            Nataly Dreams
+          </a>
+        </div>
       </div>
     </footer>
   )

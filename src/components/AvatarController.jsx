@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber"
 import { CapsuleCollider, CylinderCollider, RigidBody } from "@react-three/rapier"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import NataliAvatar from "../models/NataliAvatar"
 import * as THREE from 'three'
 
@@ -35,6 +35,7 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
   const character = useRef()
 
   const [animation, setAnimation] = useState("idle")
+  const currentAnimation = useRef('idle')
   const characterRotationTarget = useRef(0)
   const rotationTarget = useRef(0)
   const [ rotationSpeed, setRotationSpeed ] = useState(0)
@@ -49,6 +50,7 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
 
     let speed = 0
     if (rb.current) {
+
       const vel = rb.current.linvel()
 
       if (isRotating) {
@@ -67,15 +69,26 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
         worldPosition.y= 7
         const vectorA = new THREE.Vector3().copy(worldPosition).normalize()
         const newAngle = vectorA
+        if (newAngle.equals(angle)) {
+          movement.copy(new THREE.Vector3().subVectors(end, worldPosition).normalize())
+          speed = WALK_SPEED
+          console.log('MOVEMENT - ', movement)
+        }
         setAngle(newAngle)
         switch (true) {
-          case (percentRate >=0 && percentRate <= 20 || percentRate >=90 && percentRate <= 100):
+          case (percentRate >=0 && percentRate <= 10 || percentRate >=90 && percentRate <= 100):
             speed = WALK_SPEED
-            setAnimation("walk")
+            if (currentAnimation.current != 'walk') {
+              setAnimation("walk")
+              currentAnimation.current = 'walk'
+            }
             break;
-          case (percentRate >20 && percentRate < 90):
+          case (percentRate >10 && percentRate < 90):
             speed = RUN_SPEED
-            setAnimation("run")
+            if (currentAnimation.current != 'run') {
+              setAnimation("run")
+              currentAnimation.current = 'run'
+            }
             break;
           default:
             break;
@@ -83,6 +96,7 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
       }
   
       if (movement.x !== 0 || movement.z !== 0) {
+        console.log()
         characterRotationTarget.current = Math.atan2(movement.x, movement.z)
         vel.x =
         Math.sin(rotationTarget.current + characterRotationTarget.current) *
@@ -91,7 +105,13 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
         Math.cos(rotationTarget.current + characterRotationTarget.current) *
         speed
       } else {
-        setAnimation("idle")
+        const animations = ['idle', 'greating', 'talkingonphone', 'hiphopdancing']
+        const numOfAnimation = Math.floor(Math.random()*4)
+        speed = 0
+        if (!animations.includes(currentAnimation.current)) {
+          setAnimation(animations[numOfAnimation])
+          currentAnimation.current = animations[numOfAnimation]
+        }
       }
       
       character.current.rotation.y = lerpAngle(
@@ -99,13 +119,16 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
           characterRotationTarget.current,
           0.5
       )
-  
-      rb.current.setLinvel(vel, true)
+      if (isRotating) {
+        rb.current.setLinvel(vel, true)
+      } else {
+        rb.current.setLinvel({x:0,y:0,z:0}, true)
+      }
     }
   })
 
   return (
-    <RigidBody linearDamping={0.3} position={[-16.5, 6.5, 20]} colliders={false} lockRotations ref={rb}>
+    <RigidBody type='kinematicVelocity' linearDamping={0.3} position={[-16.5, 2.7, 20]} colliders={false} lockRotations ref={rb}>
         <group ref={container} >
             <group ref={character}>
                 <NataliAvatar

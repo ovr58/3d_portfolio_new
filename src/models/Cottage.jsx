@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 import { cottageScene } from '../assets'
@@ -12,6 +12,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, ...props }) => {
 
   const { gl, camera } = useThree()
+  
   const cottageRef = useRef()
   const cameraTarget = useRef()
   const cameraPosition = useRef()
@@ -60,7 +61,7 @@ const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, .
     }
   }, [gl, handlePointerDown, handlePointerUp])
 
-  const { scene } = useGLTF(cottageScene)
+  const { scene } = useMemo(() => useGLTF(cottageScene))
 
   useEffect(() => {
     const colliderPointsArray = []
@@ -129,7 +130,5 @@ const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, .
     </group>
   )
 }
-
-useGLTF.preload('/cottage.glb')
 
 export default Cottage

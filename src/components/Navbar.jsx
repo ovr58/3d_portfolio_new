@@ -1,16 +1,16 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react'
 
-import { localize } from '../utils/Translation';
-import LangMenu from '../utils/LangMenu';
-import { logo } from '../assets';
-import { useLang } from '../context/LangContext';
-import { NavLink } from 'react-router-dom';
+import { localize } from '../utils/Translation'
+import LangMenu from '../utils/LangMenu'
+import { logo } from '../assets'
+import { useLang } from '../context/LangContext'
+import { NavLink } from 'react-router-dom'
 
 const NavigationLinks = ({mode}) => {
 
-  const { lang } = useLang();
+  const { lang } = useLang()
 
-  const navLinks = useMemo(() => localize(lang, 'navLinks'), [lang]);
+  const navLinks = useMemo(() => localize(lang, 'navLinks'), [lang])
 
   return (
     <ul className={mode}>
@@ -40,14 +40,14 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+      setWindowWidth(window.innerWidth)
+    }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   return (
@@ -100,7 +100,7 @@ const Navbar = () => {
       <LangMenu />
     </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

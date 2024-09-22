@@ -1,4 +1,5 @@
 import logo from './logo.svg'
+import arrow from './arrow.svg'
 import backend from './backend.png'
 import creator from './creator.png'
 import mobile from './mobile.png'
@@ -48,6 +49,7 @@ import en from './us.svg'
 
 export {
   logo,
+  arrow,
   backend,
   creator,
   mobile,

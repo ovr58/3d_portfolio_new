@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber"
-import { Suspense, useEffect, useRef, useState } from "react"
-import { AvatarController, SuspenseVisual } from "../components"
+import { Suspense, useRef, useState } from "react"
+import { AvatarController, HomeInfo, SuspenseVisual } from "../components"
 import Cottage from "../models/Cottage"
 import { Environment, OrthographicCamera, Preload } from "@react-three/drei"
 import SkyAndClouds from "../models/SkyAndClouds"
@@ -27,6 +27,9 @@ function Home() {
 
   return (
     <section className='w-full h-screen realtive'>
+      <div className = 'absolute top-28 sm:top-24 left-0 right-0 z-10 flex items-center justify-center'>
+        {<HomeInfo stage={stage} />}
+      </div>
       <Canvas
         className={`${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         shadows

@@ -31,11 +31,18 @@ import {
 const herotext = {
   hitext: "Hi! I'm ",
   nametext: 'Nataly!',
+  learnMore: 'Learn more',
   myintro: [
     'I develop 3D visualizations, models ',
     'and scenes for your enterprises, ',
     'endeavors and dreams.',
   ],
+  about: ['Worked with many clients', 'and picked up many skills along the way'],
+  socials: ['By the way, here are my contacts, ', 'Upwork is also there, I answer quickly :)'],
+  portfolio: ['Led multiple projects to success over the years.', 'Curious about some?', 'Visit my portfolio'],
+  reviews: ['Find out what my clients think!', 'Testimonials'],
+  experience: ['A little (or a lot) useful about my work...'],
+  readytowork: ['Now I’m ready to discuss your task', 'and get to work...', 'Contact me']
 };
 
 const navLinks = [
@@ -43,7 +50,7 @@ const navLinks = [
     about: 'About',
   },
   {
-    work: 'Work',
+    work: 'Portfolio',
   },
   {
     contact: 'Contact',
