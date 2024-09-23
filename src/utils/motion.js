@@ -23,19 +23,19 @@ export const textVariant = (delay=0.5) => {
   };
 };
 
-export const fadeIn = (direction, type, delay, duration) => {
+export const fadeIn = (delay, duration = 1.8, type = 'spring') => {
   return {
     initial: {
       x: 0,
       y: 0,
       opacity: 0,
-      transition: { transition: { type: "spring", duration: 1.8 }, delay: delay },
+      transition: { transition: { type: type, duration: duration }, delay: delay },
     },
     animate: {
       x:  0,
       y:  0,
       opacity: 1,
-      transition: { transition: { type: "spring", duration: 1.8 }, delay: delay },
+      transition: { transition: { type: type, duration: duration }, delay: delay },
     },
     exit: {
       x: 0,
