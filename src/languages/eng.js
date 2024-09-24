@@ -83,6 +83,10 @@ const services = [
   },
 ];
 
+const technologiesHeader = {
+  mySkills: 'My Skills...'
+}
+
 const technologies = [
   {
     name: '3Ds max',
@@ -226,6 +230,7 @@ const experiences = [
 const testimonials_text = {
   what_others_say: 'What others say?',
   testiomnials_text: 'Testimonials...',
+  testimonials_promt: "I've worked with all sorts of clients, leveling up my skills and teaming up with smart people. Here's some feedback..."
 };
 
 const testimonials = [
@@ -256,7 +261,7 @@ const testimonials = [
 ];
 
 const work_text = {
-  my_work_header: 'My work.',
+  my_work_header: 'My ',
   my_work_header1: 'Projects...',
   my_work_intro:
     'Following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described and live demos in it. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.',
@@ -336,6 +341,7 @@ const projects = [
 ];
 
 const contact_text = {
+  place_order: 'or place your order on Upwork or another platform...',
   alert_message_sent: 'Thank you. I will get back to you as soon as possible.',
   alert_message_wrong: 'Something went wrong.',
   get_in_touch: 'Get in touch',
@@ -359,6 +365,7 @@ export default {
   navLinks,
   services,
   technologies,
+  technologiesHeader,
   experiences,
   testimonials,
   projects,

@@ -1,5 +1,16 @@
+import { useMemo } from "react"
+import { telegram, whatsup } from "../assets"
+import { useLang } from '../context/LangContext'
+import { localize } from "../utils/Translation"
 
 function Footer() {
+
+  const telNumber = import.meta.env.VITE_APP_TELNUMBER
+
+  const { lang } = useLang()
+
+  const contactText = useMemo(() => localize(lang, 'contact_text'), [lang])
+
   return (
     <footer className = 'footer'>
       <div className="footer-container">
@@ -75,6 +86,34 @@ function Footer() {
               >
                 <path d="M44.3,164.5L76.9,51.6H127l-10.1,35c-0.1,0.2-0.2,0.4-0.3,0.6L90,179.6h24.8c-10.4,25.9-18.5,46.2-24.3,60.9,c-45.8-0.5-58.6-33.3-47.4-72.1 M90.7,240.6l60.4-86.9h-25.6l22.3-55.7c38.2,4,56.2,34.1,45.6,70.5,c-11.3,39.1-57.1,72.1-101.7,72.1C91.3,240.6,91,240.6,90.7,240.6z" />
               </svg>
+            </a>
+            <a
+              href={`https://wa.me/${telNumber}`}
+              target="_blank"
+              className="px-2 py-2 h-9 w-9 shadow-primary hover:animate-ping"
+              rel="noreferrer"
+              aria-label="message via whatsapp"
+            >
+              <img
+                src={whatsup}
+                alt="whatsup"
+                className=" h-[30px] w-[30px]"
+                title={contactText.form_title_whatsup}
+              />
+            </a>
+            <a
+              href={`https://t.me/natatulia84`}
+              target="_blank"
+              className="px-2 py-2 h-9 w-9 shadow-primary hover:animate-ping"
+              rel="noreferrer"
+              aria-label="message via telegram"
+            >
+              <img
+                src={telegram}
+                alt="telegram"
+                className=" h-[30px] w-[30px]"
+                title={contactText.form_title_telega}
+              />
             </a>
           </div>
         </div>

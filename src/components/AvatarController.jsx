@@ -40,6 +40,16 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
   const rotationTarget = useRef(0)
   const [ rotationSpeed, setRotationSpeed ] = useState(0)
 
+  useEffect(() => {
+    if (rb.current) {
+      // Устанавливаем начальную позицию
+      const { x, y, z } = rb.current.translation()
+      if (x !== -16.5 && y !== 2 && z !== 20) {
+        rb.current.setTranslation({ x: -16.5, y: 2, z: 20 }, true)
+      }
+    }
+  }, [])
+
   useFrame(({ camera }) => {
     const movement = new THREE.Vector3().set(0, 0, 0)
     const nextStage = (stage + 1) > (coordinates.length - 1) ? 0 : (stage + 1)
@@ -72,7 +82,6 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
         if (newAngle.equals(angle)) {
           movement.copy(new THREE.Vector3().subVectors(end, worldPosition).normalize())
           speed = WALK_SPEED
-          console.log('MOVEMENT - ', movement)
         }
         setAngle(newAngle)
         switch (true) {
@@ -107,8 +116,9 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
       } else {
         const animations = ['idle', 'greating', 'talkingonphone', 'hiphopdancing']
         const numOfAnimation = Math.floor(Math.random()*4)
-        speed = 0
         if (!animations.includes(currentAnimation.current)) {
+          speed = 0
+          console.log('SET IDLE ANIMATION')
           setAnimation(animations[numOfAnimation])
           currentAnimation.current = animations[numOfAnimation]
         }
@@ -128,7 +138,7 @@ function AvatarController({coordinates, stage, setStage, isRotating, setIsRotati
   })
 
   return (
-    <RigidBody type='kinematicVelocity' linearDamping={0.3} position={[-16.5, 2.7, 20]} colliders={false} lockRotations ref={rb}>
+    <RigidBody type='dynamic' linearDamping={0.3} position={[-16.5, 2.7, 20]} colliders={false} lockRotations ref={rb}>
         <group ref={container} >
             <group ref={character}>
                 <NataliAvatar

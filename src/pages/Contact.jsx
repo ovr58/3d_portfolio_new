@@ -1,17 +1,24 @@
 import emailjs from "@emailjs/browser"
 import { Canvas } from "@react-three/fiber"
-import { Suspense, useRef, useState } from "react"
+import { Suspense, useMemo, useRef, useState } from "react"
 
-import { Fox } from "../models"
 import useAlert from "../hooks/useAlert"
 import { Alert, SuspenseVisual } from "../components"
+import { useLang } from '../context/LangContext'
+import NataliAvatar from "../models/NataliAvatar"
+import { localize } from "../utils/Translation"
 
 const Contact = () => {
+
   const formRef = useRef()
   const [form, setForm] = useState({ name: "", email: "", message: "" })
   const { alert, showAlert, hideAlert } = useAlert()
   const [loading, setLoading] = useState(false)
   const [currentAnimation, setCurrentAnimation] = useState("idle")
+
+  const { lang } = useLang()
+
+  const contactText = useMemo(() => localize(lang, 'contact_text'), [lang])
 
   const handleChange = ({ target: { name, value } }) => {
     setForm({ ...form, [name]: value })
@@ -29,11 +36,12 @@ const Contact = () => {
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        
         {
           from_name: form.name,
-          to_name: "JavaScript Mastery",
+          to_name: 'Nataly',
           from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
+          to_email: 'matveeva-natali@list.ru',
           message: form.message,
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
@@ -43,7 +51,7 @@ const Contact = () => {
           setLoading(false)
           showAlert({
             show: true,
-            text: "Thank you for your message 😃",
+            text:  `${contactText.alert_message_sent} 😃`,
             type: "success",
           })
 
@@ -64,7 +72,7 @@ const Contact = () => {
 
           showAlert({
             show: true,
-            text: "I didn't receive your message 😢",
+            text: `${contactText.alert_message_wrong} 😢`,
             type: "danger",
           })
         }
@@ -72,24 +80,50 @@ const Contact = () => {
   }
 
   return (
-    <section className='relative flex lg:flex-row flex-col max-container'>
+    <section className='relative w-full h-screen'>
       {alert.show && <Alert {...alert} />}
+      <Canvas
+        camera={{
+          position: [0, 0, 5],
+          fov: 55,
+          near: 0.1,
+          far: 1000,
+        }}
+      >
+        <directionalLight position={[0, 0, 1]} intensity={2.5} />
+        <ambientLight intensity={1} />
+        <pointLight position={[5, 10, 0]} intensity={2} />
+        <spotLight
+          position={[10, 10, 10]}
+          angle={0.15}
+          penumbra={1}
+          intensity={2}
+        />
 
-      <div className='flex-1 min-w-[50%] flex flex-col'>
-        <h1 className='head-text'>Get in Touch</h1>
+        <Suspense fallback={<SuspenseVisual />}>
+          <NataliAvatar
+            animation={currentAnimation}
+            position={[1, -12, 0]}
+            rotation={[12.629, -0.6, 0]}
+            scale={[8, 8, 8]}
+          />
+        </Suspense>
+      </Canvas>
+      <div className='fixed top-1/4 sm:right-1/2 inset-16 sm:min-w-[40%] min-w-[80%] rounded-sm h-[60%] glassmorphism drop-shadow-md p-10 flex flex-col overflow-auto scrollbar-hide'>
+        <h1 className='head-text'>{contactText.get_in_touch}</h1>
 
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='w-full flex flex-col gap-7 mt-14'
+          className='w-full flex flex-col gap-3 mt-10'
         >
           <label className='text-black-500 font-semibold'>
-            Name
+            {contactText.form_your_name}
             <input
               type='text'
               name='name'
               className='input'
-              placeholder='John'
+              placeholder={contactText.form_your_name_placeholder}
               required
               value={form.name}
               onChange={handleChange}
@@ -98,12 +132,12 @@ const Contact = () => {
             />
           </label>
           <label className='text-black-500 font-semibold'>
-            Email
+          {contactText.form_your_email}
             <input
               type='email'
               name='email'
               className='input'
-              placeholder='John@gmail.com'
+              placeholder={contactText.form_your_email_placeholder}
               required
               value={form.email}
               onChange={handleChange}
@@ -112,12 +146,12 @@ const Contact = () => {
             />
           </label>
           <label className='text-black-500 font-semibold'>
-            Your Message
+            {contactText.form_your_message}
             <textarea
               name='message'
               rows='4'
               className='textarea'
-              placeholder='Write your thoughts here...'
+              placeholder={contactText.form_your_message_placeholder}
               value={form.message}
               onChange={handleChange}
               onFocus={handleFocus}
@@ -132,39 +166,9 @@ const Contact = () => {
             onFocus={handleFocus}
             onBlur={handleBlur}
           >
-            {loading ? "Sending..." : "Submit"}
+            {loading ? contactText.form_sending_message : contactText.form_sent_message}
           </button>
         </form>
-      </div>
-
-      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'>
-        <Canvas
-          camera={{
-            position: [0, 0, 5],
-            fov: 75,
-            near: 0.1,
-            far: 1000,
-          }}
-        >
-          <directionalLight position={[0, 0, 1]} intensity={2.5} />
-          <ambientLight intensity={1} />
-          <pointLight position={[5, 10, 0]} intensity={2} />
-          <spotLight
-            position={[10, 10, 10]}
-            angle={0.15}
-            penumbra={1}
-            intensity={2}
-          />
-
-          <Suspense fallback={<SuspenseVisual />}>
-            <Fox
-              currentAnimation={currentAnimation}
-              position={[0.5, 0.35, 0]}
-              rotation={[12.629, -0.6, 0]}
-              scale={[0.5, 0.5, 0.5]}
-            />
-          </Suspense>
-        </Canvas>
       </div>
     </section>
   )

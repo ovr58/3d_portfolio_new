@@ -15,13 +15,13 @@ function Home() {
   const [ angle, setAngle ] = useState(new Vector3(-15, 6, 20).normalize())
 
   const coordinates = [
-    [-15.6, -1.7, 20], 
-    [-15.5, -1.7, -21], 
+    [-16.6, -1.7, 20], 
+    [-15.6, -1.7, -21.5], 
     [-10.4, -1.7, -20], 
-    [16, -1.7, -20], 
-    [14, -1.7, -8.2], 
-    [14, -1.7, 16.2], 
-    [-11, -1.7, 16.5]
+    [16.5, -1.7, -20], 
+    [14.3, -1.7, -8.2], 
+    [14.2, -1.7, 16.2], 
+    [-11.2, -1.7, 16.5]
   ]
   const [isRotating, setIsRotating] = useState(false)
 
@@ -33,33 +33,32 @@ function Home() {
       <Canvas
         className={`${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         shadows
-        camera={{ position: [3, 3, 3], near: 0.1, far: 1000 }}
+        camera={{ position: [-15, 0, 20], near: 0.1, far: 1000 }}
         style={{
           touchAction: "none",
         }}
-        gl={{ preserveDrawingBuffer: true }}
       >
         <Suspense fallback={<SuspenseVisual />}>
           <directionalLight 
-            position={[-15, 30, 20]}
-            intensity={2}
+            position={[-15, 10, 15]}
+            intensity={0.65}
             castShadow
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
+            shadow-mapSize-width={1048}
+            shadow-mapSize-height={1048}
             shadow-bias={-0.00005}
           >
             <OrthographicCamera
-              left={-22}
-              right={15}
-              top={10}
-              bottom={-20}
+              left={-45}
+              right={60}
+              top={100}
+              bottom={0}
               ref={shadowCameraRef}
               attach={"shadow-camera"}
             />
           </directionalLight>
           <ambientLight intensity={0.5} />
           <hemisphereLight skyColor='#b1e1ff' groundColor='#000000' intensity={1}/>
-          <Environment preset="park" />
+          <Environment preset="sunset" />
           <SkyAndClouds isRotating={isRotating} />
           <Physics debug={false} key={'cottageMap'}>
             <Cottage 

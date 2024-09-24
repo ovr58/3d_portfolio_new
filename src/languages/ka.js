@@ -83,6 +83,10 @@ const services = [
   },
 ];
 
+const technologiesHeader = {
+  mySkills: 'ჩემი უნარები...'
+}
+
 const technologies = [
   {
     name: '3Ds max',
@@ -226,6 +230,7 @@ const experiences = [
 const testimonials_text = {
   what_others_say: 'რას ამბობენ სხვები?',
   testiomnials_text: 'ჩვენებები...',
+  testimonials_promt: 'მე ვმუშაობდი ყველა სახის კლიენტთან, გავაუმჯობესე ჩემი უნარები და გავერთიანდი ჭკვიან ადამიანებთან. აი რამდენიმე გამოხმაურება...'
 };
 
 const testimonials = [
@@ -256,7 +261,7 @@ const testimonials = [
 ];
 
 const work_text = {
-  my_work_header: 'ჩემი ნამუშევარი.',
+  my_work_header: 'ჩემი ',
   my_work_header1: 'პროექტები...',
   my_work_intro:
     'შემდეგი პროექტები აჩვენებენ ჩემს უნარებსა და გამოცდილებას ჩემი ნამუშევრების რეალურ სამყაროში მაგალითებით. თითოეული პროექტი მოკლედ არის აღწერილი და მასში ცოცხალი დემო. ეს ასახავს ჩემს უნარს, გადაჭრას რთული პრობლემები, ვიმუშაო სხვადასხვა ტექნოლოგიებით და ეფექტურად ვმართო პროექტები.',
@@ -336,6 +341,7 @@ const projects = [
 ];
 
 const contact_text = {
+  place_order: 'ან განათავსეთ თქვენი შეკვეთა Upwork-ზე ან სხვა პლატფორმაზე...',
   alert_message_sent: 'Გმადლობთ. რაც შეიძლება მალე დაგიბრუნდები.',
   alert_message_wrong: 'Რაღაც არასწორად წავიდა.',
   get_in_touch: 'Შემეხმიანე',
@@ -359,6 +365,7 @@ export default {
   navLinks,
   services,
   technologies,
+  technologiesHeader,
   experiences,
   testimonials,
   projects,

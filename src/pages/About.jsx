@@ -12,6 +12,7 @@ const About = () => {
   const intro = useMemo(() => localize(lang, 'intro'), [lang])
   const services = useMemo(() => localize(lang, 'services'), [lang])
   const skills = useMemo(() => localize(lang, 'technologies'), [lang])
+  const headerText = useMemo(() => localize(lang, 'technologiesHeader'), [lang])
 
   const [selected, setSelected] = useState(-1)
 
@@ -32,7 +33,7 @@ const About = () => {
         ))}
       </div>
       <div className='py-10 flex flex-col'>
-        <h3 className='subhead-text'>My Skills</h3>
+        <h3 className='subhead-text'>{headerText.mySkills}</h3>
 
         <div className='mt-16 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-12'>
           {skills.map((skill, i) => (

@@ -55,7 +55,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .footer {
-    @apply mx-auto pb-6 fixed bottom-0 w-full;
+    @apply select-none mx-auto pb-6 fixed bottom-0 w-full;
   }
 
   .footer-container {

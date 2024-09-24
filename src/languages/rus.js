@@ -83,6 +83,11 @@ const services = [
   },
 ];
 
+const technologiesHeader = {
+  mySkills: 'Мои навыки...'
+}
+
+
 const technologies = [
   {
     name: '3Ds max',
@@ -226,6 +231,7 @@ const experiences = [
 const testimonials_text = {
   what_others_say: 'Что говорят клиенты?',
   testiomnials_text: 'Отзывы...',
+  testimonials_promt: 'Я работала с самыми разными клиентами, совершенствуя свои навыки и объединяясь с умными людьми. Вот некоторые отзывы...'
 };
 
 const testimonials = [
@@ -256,7 +262,7 @@ const testimonials = [
 ];
 
 const work_text = {
-  my_work_header: 'Мои работы.',
+  my_work_header: 'Мои ',
   my_work_header1: 'Проекты...',
   my_work_intro:
     'Следующие работы одни из тех, что демонстрируют мой опыт и его применение к задачам реальных заказчиков. Представлена суть каждого проекта и ссылка на подробные материалы на Boosty.to. Я хотела продемонстрировать, что компилирую различные технологии и решаю проблемы эффективно.',
@@ -336,6 +342,7 @@ const projects = [
 ];
 
 const contact_text = {
+  place_order: 'Или разместите свой заказ на Upwork или другой платформе...',
   alert_message_sent: 'Спасибо! Я свяжусь с Вами в кратчайшее время!',
   alert_message_wrong:
     'Что-то поломалось, воспользуйтесь другими средствами связи.',
@@ -359,6 +366,7 @@ export default {
   intro,
   navLinks,
   services,
+  technologiesHeader,
   technologies,
   experiences,
   testimonials,

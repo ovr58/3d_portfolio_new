@@ -37,11 +37,10 @@ import cottage from './cottage.jpeg'
 import cottageScene from './3d/cottage.glb'
 import skyScene from './3d/sky.glb'
 import avatarNatali from './3d/avatarNatali.glb'
-import angryAnimation from './animations/angry.fbx'
-import happyTurn from './animations/happyturn.fbx'
 import planeModel from './3d/plane.glb'
 import interior from './camera01.jpg'
 import kitchen from './kitchen.jpg'
+import testimonials from './testimonial.png'
 
 import ka from './ka.svg'
 import ru from './ru.svg'
@@ -88,7 +87,6 @@ export {
   cottageScene,
   skyScene,
   avatarNatali,
-  angryAnimation,
   planeModel,
-  happyTurn
+  testimonials
 }
