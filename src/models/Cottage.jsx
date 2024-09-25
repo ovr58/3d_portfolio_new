@@ -124,7 +124,12 @@ const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props })
             args={[0.6, 0.6]}
             name={point.stageName}
             sensor
-            onIntersectionEnter={(other) => (setIsRotating(false), appStore.stage = (Number(other.target.colliderObject.name)-1))}
+            onIntersectionEnter={
+              (other) => (
+                setIsRotating(false), 
+                appStore.stage = (Number(other.target.colliderObject.name)-1),
+                appStore.angle = angle.toArray()
+              )}
             onIntersectionExit={(other) => console.log('Exited sensor', other)}
           />
         ))

@@ -44,13 +44,14 @@ function AvatarController({coordinates, stage, isRotating, setIsRotating, angle,
     if (rb.current) {
       // Устанавливаем начальную позицию
       const { x, y, z } = rb.current.translation()
-      if (x !== -16.5 && y !== 2 && z !== 20) {
-        rb.current.setTranslation({ x: -16.5, y: 2, z: 20 }, true)
+      if (x !== coordinates[stage][0] && y !== coordinates[stage][1] && z !== coordinates[stage][2]) {
+        rb.current.setTranslation({ x: coordinates[stage][0], y: 2, z: coordinates[stage][2] }, true)
       }
     }
   }, [])
 
   useFrame(({ camera }) => {
+
     const movement = new THREE.Vector3().set(0, 0, 0)
     const nextStage = (stage + 1) > (coordinates.length - 1) ? 0 : (stage + 1)
     const start = new THREE.Vector3().set(...coordinates[stage])

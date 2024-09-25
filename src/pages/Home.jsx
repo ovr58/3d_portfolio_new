@@ -15,7 +15,8 @@ function Home() {
   const shadowCameraRef = useRef()
   const appState = useSnapshot(appStore)
   const stage = appState.stage
-  const [ angle, setAngle ] = useState(new Vector3(-15, 6, 20).normalize())
+  console.log('STAGE - ', stage)
+  const [ angle, setAngle ] = useState(new Vector3(...appState.angle).normalize())
 
   const coordinates = [
     [-16.6, -1.7, 20], 

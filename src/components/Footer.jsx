@@ -14,12 +14,12 @@ function Footer() {
   return (
     <footer className = 'footer'>
       <div className="footer-container">
-        <div className="hidden sm:flex px-6 pt-2">
+        <div className="hidden sm:flex px-6 pt-2 glassmorphism">
           <div className="mb-2 flex justify-center">
             <a
               href="https://www.facebook.com/matveeva.natalya"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="my facebook page"
@@ -37,7 +37,7 @@ function Footer() {
             <a
               href="https://twitter.com/noyeryadom78832/"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="i am on twitter or x"
@@ -55,7 +55,7 @@ function Footer() {
             <a
               href="https://instagram.com/nd_visualisation"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="my instagram"
@@ -73,7 +73,7 @@ function Footer() {
             <a
               href="https://boosty.to/3dnataly"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="my support plan"
@@ -90,7 +90,7 @@ function Footer() {
             <a
               href={`https://wa.me/${telNumber}`}
               target="_blank"
-              className="px-2 py-2 h-9 w-9 shadow-primary hover:animate-ping"
+              className="px-2 py-2 h-11 w-11 shadow-primary hover:animate-ping"
               rel="noreferrer"
               aria-label="message via whatsapp"
             >
@@ -104,7 +104,7 @@ function Footer() {
             <a
               href={`https://t.me/natatulia84`}
               target="_blank"
-              className="px-2 py-2 h-9 w-9 shadow-primary hover:animate-ping"
+              className="px-2 py-2 h-11 w-11 shadow-primary hover:animate-ping"
               rel="noreferrer"
               aria-label="message via telegram"
             >
@@ -117,7 +117,7 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="p-4 text-center bg-slate-400">
+        <div className="p-4 text-center glassmorphism">
           <a className="text-black" href="" aria-label="my link">
             © 2024 Copyright:
             {' '}
