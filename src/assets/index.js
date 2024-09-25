@@ -41,6 +41,16 @@ import planeModel from './3d/plane.glb'
 import interior from './camera01.jpg'
 import kitchen from './kitchen.jpg'
 import testimonials from './testimonial.png'
+import cabinonalake from './CabinOnALake.jpg'
+import chairmodeling from './ChairModeling.png'
+import cottagebyrefference from './CottageByRefference.jpg'
+import cottageindetails from './CottagesInDetails.jpg'
+import inartdesign from './inartdesign.jpg'
+import interiorForDesigner from './Interior.jpg'
+import livingroom from './Livingroom.jpg'
+import modularHouse from './modularHouse.jpg'
+import moduleMovieTheater from './moduleMovieTheater.jpg'
+import sofaModeling from './sofaModeling.jpg'
 
 import ka from './ka.svg'
 import ru from './ru.svg'
@@ -88,5 +98,15 @@ export {
   skyScene,
   avatarNatali,
   planeModel,
-  testimonials
+  testimonials,
+  cabinonalake, 
+  chairmodeling,
+  cottagebyrefference,
+  cottageindetails,
+  inartdesign,
+  interiorForDesigner,
+  livingroom,
+  modularHouse,
+  moduleMovieTheater,
+  sofaModeling
 }

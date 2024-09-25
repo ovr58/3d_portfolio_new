@@ -26,6 +26,16 @@ import {
   client1,
   client2,
   client3,
+  livingroom,
+  cottageindetails,
+  modularHouse,
+  interiorForDesigner,
+  moduleMovieTheater,
+  inartdesign,
+  cabinonalake,
+  cottagebyrefference,
+  chairmodeling,
+  sofaModeling,
 } from '../assets';
 
 const herotext = {
@@ -267,6 +277,186 @@ const work_text = {
 
 const projects = [
   {
+    name: 'Furniture Modeling, Sofa, for Interior.',
+    description: 'Modeling any furniture to order according to drawings and references. Attention to detail and professional results. Any formats and adaptation for any use :)',
+    tags: [
+      {
+        name: 'furniture',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'visualization',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'modeling',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: sofaModeling,
+    source_code_link: 'https://www.behance.net/gallery/187794293/modelirovanie-3D-divana',
+  },  
+  {
+    name: "Furniture Modeling, Chair, Complex Design",
+    description: "Modeling any furniture to order according to drawings and references. Attention to detail and professional results. Any formats and adaptation for any use :)",
+    tags: [
+      {
+        name: "furniture",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "visualization",
+        color: "green-text-gradient",
+      },
+      {
+        name: "modeling",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: chairmodeling,
+    source_code_link: "https://www.behance.net/gallery/191756637/Chair-modeling",
+  },  
+  {
+    name: "Visualization of a Room by the Sea",
+    description: "One of my first works. This visual was necessary for my account. It turned out very interesting :)",
+    tags: [
+      {
+        name: "interior",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "visualization",
+        color: "green-text-gradient",
+      },
+      {
+        name: "modeling",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: interiorForDesigner,
+    source_code_link: "https://www.behance.net/gallery/170836005/Visualization-of-a-room-in-a-house-by-the-sea",
+  },  
+  {
+    name: "Barton Hills Residence Visualization in Austin, Texas, Reference Work",
+    description: "A popular photo on the internet that also attracted me with its harmonious combination of wood, glass, and steel, and the contrast of warm and cool tones.",
+    tags: [
+      {
+        name: "exterior",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "visualization",
+        color: "green-text-gradient",
+      },
+      {
+        name: "modeling",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: cottagebyrefference,
+    source_code_link: "https://www.behance.net/gallery/180671299/rezidencija-Barton-Hills",
+  },  
+  {
+    name: "Atmospheric Exterior - Lake House",
+    description: "A cozy cottage on the shore of a lake, deep in the forest. Taking such a photograph is very expensive, but there is an alternative - to contact a visualizer who can create something even better than a photograph.",
+    tags: [
+      {
+        name: "exterior",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "visualization",
+        color: "green-text-gradient",
+      },
+      {
+        name: "modeling",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: cabinonalake,
+    source_code_link: "https://www.behance.net/gallery/175309075/domik-v-tumane",
+  },  
+  {
+    name: "Modular Home Mini-Theater Project",
+    description: "A company that manufactures modular homes is expanding its range with mini-theaters. Visualizations were needed for the catalog, which I completed in a short time. Selecting furniture, paintings, and other details can sometimes take a lot of time, but my experience allows me to solve this task quickly, even if it requires modeling from scratch.",
+    tags: [
+      {
+        name: "interior",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "visualization",
+        color: "green-text-gradient",
+      },
+      {
+        name: "modeling",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: moduleMovieTheater,
+    source_code_link: "https://www.behance.net/gallery/192381607/3D-visualization-of-the-interior-of-a-modular-home",
+  },
+  {
+    name: "Interior Visualization for Inart.studio Design Studio",
+    description: "The design studio approached us for a step-by-step visualization of a client's apartment interior. We started with the hallway, where we quickly agreed on all materials and their colors. Full mutual understanding with the client was also achieved for the subsequent stages of work.",
+    tags: [
+      {
+        name: "interior",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "visualization",
+        color: "green-text-gradient",
+      },
+      {
+        name: "modeling",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: inartdesign,
+    source_code_link: "https://www.behance.net/gallery/202638697/prihozhaja-Nemo",
+  },
+  {
+    name: "Modular House Interior Visualization",
+    description: "A company that creates modular homes approached us to create vibrant visualizations for their catalogs. The materials of the furniture, glass interior details, and the view from the window all had to meet high standards. Post-processing was also applied in Adobe Photoshop.",
+    tags: [
+      {
+        name: "modular house",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "interior",
+        color: "green-text-gradient",
+      },
+      {
+        name: "construction",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: modularHouse,
+    source_code_link: "https://www.behance.net/gallery/203657751/3D-visualization-of-the-interior-of-a-modular-house",
+  },
+  {
+    name: "Living Room Visualization",
+    description: "This project uses advanced lighting techniques to create a natural and pleasant atmosphere. The visualization showcases a cozy and functional space, perfect for comfortable living.",
+    tags: [
+      {
+        name: "room",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "interior",
+        color: "green-text-gradient",
+      },
+      {
+        name: "design",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: livingroom,
+    source_code_link: "https://www.behance.net/gallery/204735049/Living-room-visualization",
+  },
+  {
     name: 'Cottage in every detail',
     description:
       "Detailed 3D model of a cottage based on an architectural project. Realistic rendering, for which the materials were carefully worked out to reflect the designer's intent and show the benefits of his ideas to a real client.",
@@ -284,9 +474,9 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: cottage,
+    image: cottageindetails,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/b6fcb513-9dd5-4ec1-a993-1d2515a8567d?share=success_publish_link',
+      'https://www.behance.net/gallery/187006515/Two-sottages',
   },
   {
     name: 'Interior for the client',
@@ -308,7 +498,7 @@ const projects = [
     ],
     image: interior,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/14c75d15-3b5a-4a81-b8d3-d0dafd8d537e?share=success_publish_link',
+      'https://www.behance.net/gallery/181745155/kvartira-v-stile-BOHO',
   },
   {
     name: 'Kitchen modeling',
@@ -334,7 +524,7 @@ const projects = [
     ],
     image: kitchen,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/42fa2b95-9661-43bf-93d3-ad570786f5b1?share=success_publish_link',
+      'https://www.behance.net/gallery/172495263/kuhnja-v-svetlyh-tonah',
   },
 ];
 

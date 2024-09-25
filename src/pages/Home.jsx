@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber"
-import { Suspense, useRef, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import { AvatarController, HomeInfo, SuspenseVisual } from "../components"
 import Cottage from "../models/Cottage"
 import { Environment, OrthographicCamera, Preload } from "@react-three/drei"
@@ -23,11 +23,20 @@ function Home() {
     [-15.6, -1.7, -21.5], 
     [-10.4, -1.7, -20], 
     [16.5, -1.7, -20], 
-    [14.3, -1.7, -8.2], 
+    [15.3, -1.7, -8.2], 
     [14.2, -1.7, 16.2], 
     [-11.2, -1.7, 16.5]
   ]
   const [isRotating, setIsRotating] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      appState.stage = 
+      setIsRotating(true)
+    }, 19000); // 3000 миллисекунд = 3 секунды
+
+    return () => clearTimeout(timer);
+  }, [stage])
 
   return (
     <section className='w-full h-screen realtive'>

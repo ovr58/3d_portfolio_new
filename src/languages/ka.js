@@ -26,6 +26,16 @@ import {
   client1,
   client2,
   client3,
+  livingroom,
+  cottageindetails,
+  modularHouse,
+  interiorForDesigner,
+  moduleMovieTheater,
+  inartdesign,
+  cabinonalake,
+  cottagebyrefference,
+  chairmodeling,
+  sofaModeling,
 } from '../assets';
 
 const herotext = {
@@ -267,6 +277,186 @@ const work_text = {
 
 const projects = [
   {
+    name: 'ავეჯის მოდელირება, დივანი, ინტერიერისთვის.',
+    description: 'ნებისმიერი ავეჯის მოდელირება შეკვეთით ნახაზებისა და რეფერენსების მიხედვით. დეტალებისადმი ყურადღება და პროფესიონალური შედეგები. ნებისმიერი ფორმატი და ადაპტაცია ნებისმიერი გამოყენებისთვის :)',
+    tags: [
+      {
+        name: 'ავეჯი',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'ვიზუალიზაცია',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'მოდელირება',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: sofaModeling,
+    source_code_link: 'https://www.behance.net/gallery/187794293/modelirovanie-3D-divana',
+  },  
+  {
+    name: "ავეჯის მოდელირება, სკამი, რთული დიზაინი",
+    description: "ნებისმიერი ავეჯის მოდელირება შეკვეთით ნახაზებისა და რეფერენსების მიხედვით. დეტალებისადმი ყურადღება და პროფესიონალური შედეგები. ნებისმიერი ფორმატი და ადაპტაცია ნებისმიერი გამოყენებისთვის :)",
+    tags: [
+      {
+        name: "ავეჯი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ვიზუალიზაცია",
+        color: "green-text-gradient",
+      },
+      {
+        name: "მოდელირება",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: chairmodeling,
+    source_code_link: "https://www.behance.net/gallery/191756637/Chair-modeling",
+  },
+  {
+    name: "ოთახის ვიზუალიზაცია ზღვის პირას",
+    description: "ჩემი ერთ-ერთი პირველი ნამუშევარი. ეს ვიზუალი საჭირო იყო ჩემი ანგარიშისთვის. ძალიან საინტერესო გამოვიდა :)",
+    tags: [
+      {
+        name: "ინტერიერი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ვიზუალიზაცია",
+        color: "green-text-gradient",
+      },
+      {
+        name: "მოდელირება",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: interiorForDesigner,
+    source_code_link: "https://www.behance.net/gallery/170836005/Visualization-of-a-room-in-a-house-by-the-sea",
+  },  
+  {
+    name: "Barton Hills-ის რეზიდენციის ვიზუალიზაცია ოსტინში, ტეხასი, რეფერენსული ნამუშევარი",
+    description: "პოპულარული ფოტო ინტერნეტში, რომელმაც ასევე მიმიზიდა ხის, მინისა და ფოლადის ჰარმონიული კომბინაციით და თბილი და ცივი ტონების კონტრასტით.",
+    tags: [
+      {
+        name: "ექსტერიერი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ვიზუალიზაცია",
+        color: "green-text-gradient",
+      },
+      {
+        name: "მოდელირება",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: cottagebyrefference,
+    source_code_link: "https://www.behance.net/gallery/180671299/rezidencija-Barton-Hills",
+  },  
+  {
+    name: "ატმოსფერული ექსტერიერი - ტბის სახლი",
+    description: "მყუდრო კოტეჯი ტბის ნაპირზე, ტყის სიღრმეში. ასეთი ფოტოს გადაღება ძალიან ძვირია, მაგრამ არსებობს ალტერნატივა - მიმართოთ ვიზუალიზატორს, რომელიც შეიძლება ფოტოზე უკეთესიც კი შექმნას.",
+    tags: [
+      {
+        name: "ექსტერიერი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ვიზუალიზაცია",
+        color: "green-text-gradient",
+      },
+      {
+        name: "მოდელირება",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: cabinonalake,
+    source_code_link: "https://www.behance.net/gallery/175309075/domik-v-tumane",
+  },  
+  {
+    name: "მოდულური სახლის მინი-თეატრის პროექტი",
+    description: "კომპანია, რომელიც აწარმოებს მოდულურ სახლებს, აფართოებს თავის ასორტიმენტს მინი-თეატრებით. კატალოგისთვის საჭირო იყო ვიზუალიზაციები, რომლებიც მე მოკლე დროში შევასრულე. ავეჯის, ნახატების და სხვა დეტალების შერჩევა ზოგჯერ დიდ დროს მოითხოვს, მაგრამ ჩემი გამოცდილება საშუალებას მაძლევს სწრაფად გადავწყვიტო ეს ამოცანა, თუნდაც ნულიდან მოდელირება იყოს საჭირო.",
+    tags: [
+      {
+        name: "ინტერიერი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ვიზუალიზაცია",
+        color: "green-text-gradient",
+      },
+      {
+        name: "მოდელირება",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: moduleMovieTheater,
+    source_code_link: "https://www.behance.net/gallery/192381607/3D-visualization-of-the-interior-of-a-modular-home",
+  },
+  {
+    name: "ინტერიერის ვიზუალიზაცია Inart.studio დიზაინ სტუდიისთვის",
+    description: "დიზაინ სტუდიამ მოგვმართა კლიენტის ბინის ინტერიერის ეტაპობრივი ვიზუალიზაციისთვის. ჩვენ დავიწყეთ დერეფნით, სადაც სწრაფად შევთანხმდით ყველა მასალასა და მათ ფერებზე. ასევე მიღწეული იყო სრული ურთიერთგაგება კლიენტთან შემდგომი სამუშაოების ეტაპებისთვის.",
+    tags: [
+      {
+        name: "ინტერიერი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ვიზუალიზაცია",
+        color: "green-text-gradient",
+      },
+      {
+        name: "მოდელირება",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: inartdesign,
+    source_code_link: "https://www.behance.net/gallery/202638697/prihozhaja-Nemo",
+  },
+  {
+    name: "მოდულური სახლის ინტერიერის ვიზუალიზაცია",
+    description: "კომპანია, რომელიც ქმნის მოდულურ სახლებს, მოგვმართა, რომ შევქმნათ ფერადი ვიზუალიზაციები მათი კატალოგებისთვის. ავეჯის მასალები, შუშის ინტერიერის დეტალები და ხედი ფანჯრიდან ყველა უნდა აკმაყოფილებდეს მაღალ სტანდარტებს. ასევე გამოყენებულია პოსტ-დამუშავება Adobe Photoshop-ში.",
+    tags: [
+      {
+        name: "მოდულური სახლი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ინტერიერი",
+        color: "green-text-gradient",
+      },
+      {
+        name: "მშენებლობა",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: modularHouse,
+    source_code_link: "https://www.behance.net/gallery/203657751/3D-visualization-of-the-interior-of-a-modular-house",
+  },
+  {
+    name: "საცხოვრებელი ოთახის ვიზუალიზაცია",
+    description: "ეს პროექტი იყენებს მოწინავე განათების ტექნიკას ბუნებრივი და სასიამოვნო ატმოსფეროს შესაქმნელად. ვიზუალიზაცია აჩვენებს მყუდრო და ფუნქციურ სივრცეს, რომელიც იდეალურია კომფორტული ცხოვრებისათვის.",
+    tags: [
+      {
+        name: "ოთახი",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "ინტერიერი",
+        color: "green-text-gradient",
+      },
+      {
+        name: "დიზაინი",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: livingroom,
+    source_code_link: "https://www.behance.net/gallery/204735049/Living-room-visualization",
+  },  
+  {
     name: 'კოტეჯი ყველა დეტალში',
     description:
       'კოტეჯის დეტალური 3D მოდელი, რომელიც დაფუძნებულია არქიტექტურულ პროექტზე. რეალისტური რენდერი, რომლისთვისაც მასალები საგულდაგულოდ იყო შემუშავებული, რათა ასახავდეს დიზაინერის განზრახვას და ეჩვენებინა მისი იდეების სარგებელი რეალური კლიენტისთვის.',
@@ -284,9 +474,9 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: cottage,
+    image: cottageindetails,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/b6fcb513-9dd5-4ec1-a993-1d2515a8567d?share=success_publish_link',
+      'https://www.behance.net/gallery/187006515/Two-sottages',
   },
   {
     name: 'ინტერიერი კლიენტისთვის',
@@ -308,7 +498,7 @@ const projects = [
     ],
     image: interior,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/14c75d15-3b5a-4a81-b8d3-d0dafd8d537e?share=success_publish_link',
+      'https://www.behance.net/gallery/181745155/kvartira-v-stile-BOHO',
   },
   {
     name: 'სამზარეულოს მოდელირება',
@@ -334,7 +524,7 @@ const projects = [
     ],
     image: kitchen,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/42fa2b95-9661-43bf-93d3-ad570786f5b1?share=success_publish_link',
+      'https://www.behance.net/gallery/172495263/kuhnja-v-svetlyh-tonah',
   },
 ];
 

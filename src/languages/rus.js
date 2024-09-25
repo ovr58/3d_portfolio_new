@@ -26,6 +26,16 @@ import {
   client1,
   client2,
   client3,
+  cottageindetails,
+  livingroom,
+  modularHouse,
+  interiorForDesigner,
+  moduleMovieTheater,
+  inartdesign,
+  cabinonalake,
+  cottagebyrefference,
+  chairmodeling,
+  sofaModeling,
 } from '../assets';
 
 const herotext = {
@@ -268,6 +278,204 @@ const work_text = {
 
 const projects = [
   {
+    name: 'Моделирование мебели, диван, для интерьера.',
+    description:
+      'Моделирование любой мебели на заказ по чертежам и референсу. Внимание к деталям и профессиональный результат. Любые форматы и адаптация под любое использование :)',
+    tags: [
+      {
+        name: 'мебель',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'визуализация',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'моделирование',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: sofaModeling,
+    source_code_link:
+      'https://www.behance.net/gallery/187794293/modelirovanie-3D-divana',
+  },
+  {
+    name: 'Моделирование мебели, кресло, сложный дизайн.',
+    description:
+      'Моделирование любой мебели на заказ по чертежам и референсу. Внимание к деталям и профессиональный результат. Любые форматы и адаптация под любое использование :)',
+    tags: [
+      {
+        name: 'мебель',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'визуализация',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'моделирование',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: chairmodeling,
+    source_code_link:
+      'https://www.behance.net/gallery/191756637/Chair-modeling',
+  },
+  {
+    name: 'Визуализация комнаты на берегу моря.',
+    description:
+      'Одна из моих первых работ. Данный визуал был необходим мне для моего аккаунта. Получилось очень даже интересно :)',
+    tags: [
+      {
+        name: 'интерьер',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'визуализация',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'моделирование',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: interiorForDesigner,
+    source_code_link:
+      'https://www.behance.net/gallery/170836005/Visualization-of-a-room-in-a-house-by-the-sea',
+  },
+  {
+    name: 'Визуализация резиденции Barton Hills в Остине, штат Техас, работа по референсу.',
+    description:
+      'Популярное фото на просторах интернета, которое тоже привлекло меня  своим гармоничным сочетанием дерева, стекла и стали, контрастом теплых и холодных оттенков.',
+    tags: [
+      {
+        name: 'экстерьер',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'визуализация',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'моделирование',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: cottagebyrefference,
+    source_code_link:
+      'https://www.behance.net/gallery/180671299/rezidencija-Barton-Hills',
+  },
+  {
+    name: 'Атмосферный экстерьер - дом на озере.',
+    description:
+      'Уютный коттедж на берегу озера, в глуши леса. Такую фотографию сделать очень дорого, но есть альтернатива - обратиться к визуализатору, который может сделать даже лучше фотографии.',
+    tags: [
+      {
+        name: 'экстерьер',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'визуализация',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'моделирование',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: cabinonalake,
+    source_code_link:
+      'https://www.behance.net/gallery/175309075/domik-v-tumane',
+  },
+  {
+    name: 'Проект миникинотеатра для компании по производству модульных домов.',
+    description:
+      'Компания по производству модульных домов расширяет свой ассортимент мини-кинотеатрами. Для каталога нужны были визуализации, которые и были выполнены мной в короткий срок. Подбор мебели, картин и прочих мелочей иногда занимает очень много времени, но мой опыт позволяет довольно быстро решать эту задачу. Даже если приходится обращаться к моделированию с нуля.',
+    tags: [
+      {
+        name: 'интерьер',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'визуализация',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'моделирование',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: moduleMovieTheater,
+    source_code_link:
+      'https://www.behance.net/gallery/192381607/3D-visualization-of-the-interior-of-a-modular-home',
+  },
+  {
+    name: 'Визуализация интерьера дизайн студии Inart.studio',
+    description:
+      'Дизайн студия обратилась для поэтапной визуализации интерьера квартиры клиента. Начали с прихожей, в которой удалось очень быстро согласовать все материалы и их цвета. Так же было достигнуто полное взаимопонимание с клиентом по дальнейшим этапам работы.',
+    tags: [
+      {
+        name: 'интерьер',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'визуализация',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'моделирование',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: inartdesign,
+    source_code_link:
+      'https://www.behance.net/gallery/202638697/prihozhaja-Nemo',
+  },
+  {
+    name: 'Визуализация интерьера модульного дома',
+    description:
+      'Компания которая создает модцльные дома обратилась для создания красочных визуализаций для своих каталогов. Материалы мебели, стеклянные детали интерьера, вид из окна, - все должно было отвечать высоким требованиям. Применена так же постобработка в Adobe Photoshop.',
+    tags: [
+      {
+        name: 'модульный дом',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'интерьер',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'строительство',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: modularHouse,
+    source_code_link:
+      'https://www.behance.net/gallery/203657751/3D-visualization-of-the-interior-of-a-modular-house',
+  },
+  {
+    name: 'Визуализация жилой комнаты',
+    description:
+      'В данной работе использованы сложные техники освещения для создания естественной и приятной атмосферы. Визуализация демонстрирует уютное и функциональное пространство, идеально подходящее для комфортного проживания.',
+    tags: [
+      {
+        name: 'комната',
+        color: 'blue-text-gradient',
+      },
+      {
+        name: 'интерьер',
+        color: 'green-text-gradient',
+      },
+      {
+        name: 'дизайн',
+        color: 'pink-text-gradient',
+      },
+    ],
+    image: livingroom,
+    source_code_link:
+      'https://www.behance.net/gallery/204735049/Living-room-visualization',
+  },
+  {
     name: 'Коттедж во всех деталях',
     description:
       'Подробная 3D модель коттеджа, основанная на архитектурном проекте. Реалистичный рендер, для которого особо тщательно были проработаны материалы, чтобы отразить замысел дизайнера и показать преимущества его идей реальному клиенту.',
@@ -285,9 +493,9 @@ const projects = [
         color: 'pink-text-gradient',
       },
     ],
-    image: cottage,
+    image: cottageindetails,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/b6fcb513-9dd5-4ec1-a993-1d2515a8567d?share=success_publish_link',
+      'https://www.behance.net/gallery/187006515/Two-sottages',
   },
   {
     name: 'Интерьер для клиента',
@@ -309,7 +517,7 @@ const projects = [
     ],
     image: interior,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/14c75d15-3b5a-4a81-b8d3-d0dafd8d537e?share=success_publish_link',
+      'https://www.behance.net/gallery/181745155/kvartira-v-stile-BOHO',
   },
   {
     name: 'Моделирование кухни',
@@ -335,7 +543,7 @@ const projects = [
     ],
     image: kitchen,
     source_code_link:
-      'https://boosty.to/3dnataly/posts/42fa2b95-9661-43bf-93d3-ad570786f5b1?share=success_publish_link',
+      'https://www.behance.net/gallery/172495263/kuhnja-v-svetlyh-tonah',
   },
 ];
 
