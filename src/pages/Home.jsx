@@ -7,11 +7,14 @@ import SkyAndClouds from "../models/SkyAndClouds"
 import PlaneModel from "../models/PlaneModel"
 import { Physics } from "@react-three/rapier"
 import { Vector3 } from 'three'
+import { useSnapshot } from "valtio"
+import appStore from '../store'
 
 function Home() {
 
   const shadowCameraRef = useRef()
-  const [ stage, setStage ] = useState(0)
+  const appState = useSnapshot(appStore)
+  const stage = appState.stage
   const [ angle, setAngle ] = useState(new Vector3(-15, 6, 20).normalize())
 
   const coordinates = [
@@ -63,7 +66,6 @@ function Home() {
           <Physics debug={false} key={'cottageMap'}>
             <Cottage 
               stage = {stage}
-              setStage = {setStage}
               isRotating = {isRotating}
               setIsRotating = {setIsRotating}
               angle = {angle}
@@ -74,7 +76,6 @@ function Home() {
             <AvatarController
               coordinates={coordinates}
               stage = {stage}
-              setStage = {setStage}
               isRotating = {isRotating}
               setIsRotating = {setIsRotating}
               angle = {angle}

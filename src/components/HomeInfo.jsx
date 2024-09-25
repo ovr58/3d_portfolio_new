@@ -90,7 +90,7 @@ const HomeInfo = ({ stage }) => {
         {heroText.experience[0]}
       </p>
 
-      <Link to='/experience' className='neo-brutalism-white neo-btn'>
+      <Link to='/expirience' className='neo-brutalism-white neo-btn'>
         {heroText.learnMore}
         <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
       </Link>

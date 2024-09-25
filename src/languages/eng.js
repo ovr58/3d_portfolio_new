@@ -168,14 +168,12 @@ const technologies = [
   },
 ];
 
-const experience_header1 = 'KEYPOINTS OF OUR FUTURE COOPERATION';
-const experience_header2 = 'Mastery and Result';
-const support_me = 'Support me!';
+const experience_header = ['KEYPOINTS OF OUR FUTURE COOPERATION', 'Mastery and Result', 'Support me!']
 
 const experiences = [
   {
     title: 'Contact me',
-    action_name: 'Use contact form bellow',
+    action_name: 'Use contact form ',
     icon: hello,
     iconBg: '#E6DEDD',
     date: 'Step - №1',
@@ -369,9 +367,7 @@ export default {
   experiences,
   testimonials,
   projects,
-  experience_header1,
-  experience_header2,
-  support_me,
+  experience_header,
   testimonials_text,
   work_text,
 };

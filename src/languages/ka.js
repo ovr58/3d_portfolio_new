@@ -168,14 +168,12 @@ const technologies = [
   },
 ];
 
-const experience_header1 = 'ჩვენი მომავალი თანამშრომლობის ძირითადი პუნქტები';
-const experience_header2 = 'ხელოსნობა და შედეგი';
-const support_me = 'Დამიჭირე მხარი!';
+const experience_header = ['ჩვენი მომავალი თანამშრომლობის ძირითადი პუნქტები', 'ხელოსნობა და შედეგი', 'Დამიჭირე მხარი!']
 
 const experiences = [
   {
     title: 'Დამიკავშირდი...',
-    action_name: 'საკონტაქტო ფორმა ქვემოთ',
+    action_name: 'საკონტაქტო ფორმა ',
     icon: hello,
     iconBg: '#E6DEDD',
     date: 'ნაბიჯი - №1',
@@ -369,9 +367,7 @@ export default {
   experiences,
   testimonials,
   projects,
-  experience_header1,
-  experience_header2,
-  support_me,
+  experience_header,
   testimonials_text,
   work_text,
 };

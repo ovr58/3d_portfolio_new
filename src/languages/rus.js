@@ -169,14 +169,12 @@ const technologies = [
   // },
 ];
 
-const experience_header1 = 'КЛЮЧЕВЫЕ МОМЕНТЫ НАШЕГО СОТРУДНИЧЕСТВА';
-const experience_header2 = 'Мастерство и результат';
-const support_me = 'Поддержи меня!';
+const experience_header = ['КЛЮЧЕВЫЕ МОМЕНТЫ НАШЕГО СОТРУДНИЧЕСТВА', 'Мастерство и результат', 'Поддержи меня!']
 
 const experiences = [
   {
     title: 'Напишите мне.',
-    action_name: 'Воспользуйтесь формой ниже',
+    action_name: 'Воспользуйтесь формой ',
     icon: hello,
     iconBg: '#E6DEDD',
     date: 'Шаг - №1',
@@ -371,9 +369,7 @@ export default {
   experiences,
   testimonials,
   projects,
-  experience_header1,
-  experience_header2,
-  support_me,
+  experience_header,
   testimonials_text,
   work_text,
 };

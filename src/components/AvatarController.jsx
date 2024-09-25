@@ -25,7 +25,7 @@ const lerpAngle = (start, end, t) => {
   return normalizeAngle(start + (end - start) * t)
 }
 
-function AvatarController({coordinates, stage, setStage, isRotating, setIsRotating, angle, setAngle, ...props}) {
+function AvatarController({coordinates, stage, isRotating, setIsRotating, angle, setAngle, ...props}) {
 
   const WALK_SPEED = 2
   const RUN_SPEED = 5

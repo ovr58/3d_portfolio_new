@@ -7,9 +7,10 @@ import { CapsuleCollider, RigidBody } from '@react-three/rapier'
 
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
+import appStore from '../store'
 
 
-const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, ...props }) => {
+const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props }) => {
 
   const { gl, camera } = useThree()
   
@@ -123,7 +124,7 @@ const Cottage = ({stage, setStage, isRotating, setIsRotating, angle, setAngle, .
             args={[0.6, 0.6]}
             name={point.stageName}
             sensor
-            onIntersectionEnter={(other) => (console.log(Number(other.target.colliderObject.name) - 1), setIsRotating(false), setStage(Number(other.target.colliderObject.name)-1))}
+            onIntersectionEnter={(other) => (setIsRotating(false), appStore.stage = (Number(other.target.colliderObject.name)-1))}
             onIntersectionExit={(other) => console.log('Exited sensor', other)}
           />
         ))
