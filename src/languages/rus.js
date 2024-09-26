@@ -36,6 +36,10 @@ import {
   cottagebyrefference,
   chairmodeling,
   sofaModeling,
+  kworkIcon,
+  linkedinIcon,
+  behanceIcon,
+  upworkIcon,
 } from '../assets';
 
 const herotext = {
@@ -566,6 +570,31 @@ const contact_text = {
   form_title_telega: 'Я в Telegram!',
 };
 
+const toglerTexts = ['Почта...', 'Upwork, Behance и т.д.']
+
+const platforms = [
+  {
+    name: 'Upwork',
+    icon: upworkIcon,
+    link: 'https://www.upwork.com/freelancers/~01d0f2bad182092161?mp_source=share'
+  },
+  {
+    name: 'Behance',
+    icon: behanceIcon,
+    link: 'https://www.behance.net/natatulia',
+  },
+  {
+    name: 'LinkedIn',
+    icon: linkedinIcon,
+    link: 'https://www.linkedin.com/in/наталья-матвеева-5b77912a2'
+  },
+  {
+    name: 'Kwork',
+    icon: kworkIcon,
+    link: ''
+  },
+];
+
 export default {
   contact_text,
   herotext,
@@ -580,4 +609,6 @@ export default {
   experience_header,
   testimonials_text,
   work_text,
+  toglerTexts,
+  platforms
 };

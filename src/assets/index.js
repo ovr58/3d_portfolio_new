@@ -51,6 +51,10 @@ import livingroom from './Livingroom.jpg'
 import modularHouse from './modularHouse.jpg'
 import moduleMovieTheater from './moduleMovieTheater.jpg'
 import sofaModeling from './sofaModeling.jpg'
+import kworkIcon from './kwork.png'
+import linkedinIcon from './linkedin.ico'
+import behanceIcon from './behance.ico'
+import upworkIcon from './Upwork.png'
 
 import ka from './ka.svg'
 import ru from './ru.svg'
@@ -108,5 +112,9 @@ export {
   livingroom,
   modularHouse,
   moduleMovieTheater,
-  sofaModeling
+  sofaModeling,
+  kworkIcon,
+  linkedinIcon,
+  behanceIcon,
+  upworkIcon
 }

@@ -7,5 +7,6 @@ import ServiceCard from "./ServiceCard"
 import Alert from './Alert'
 import CTA from './CTA'
 import TestimonialCard from "./TestimonialCard"
+import Togler from "./Togler"
 
-export { Navbar, Footer, SuspenseVisual, AvatarController, HomeInfo, ServiceCard, Alert, CTA, TestimonialCard }
+export { Togler, Navbar, Footer, SuspenseVisual, AvatarController, HomeInfo, ServiceCard, Alert, CTA, TestimonialCard }
