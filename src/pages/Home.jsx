@@ -15,7 +15,6 @@ function Home() {
   const shadowCameraRef = useRef()
   const appState = useSnapshot(appStore)
   const stage = appState.stage
-  console.log('STAGE - ', stage)
   const [ angle, setAngle ] = useState(new Vector3(...appState.angle).normalize())
 
   const coordinates = [
@@ -31,7 +30,6 @@ function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      appState.stage = 
       setIsRotating(true)
     }, 19000); // 3000 миллисекунд = 3 секунды
 

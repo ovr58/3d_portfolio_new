@@ -11,7 +11,6 @@ function Expirience() {
   const experiences = useMemo(() => localize(lang, 'experiences'), [lang])
   const experienceHeader = useMemo(() => localize(lang, 'experience_header'), [lang])
   const contactText = useMemo(() => localize(lang, 'contact_text'), [lang])
-  console.log('here')
   return (
     <section className='max-container'>
       <h1 className='head-text'>

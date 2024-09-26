@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { planeModel } from '../assets'
 import { useAnimations, useGLTF } from '@react-three/drei'
 import { Vector3 } from 'three'
@@ -10,7 +10,7 @@ const PlaneModel = ({isRotating, ...props}) => {
 
   const planeAngle = useRef(0)
 
-  const {scene, animations} = useGLTF(planeModel)
+  const {scene, animations} = useMemo(() => useGLTF(planeModel))
   
   const { actions } = useAnimations(animations, planeRef)
 

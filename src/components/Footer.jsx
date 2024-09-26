@@ -118,10 +118,10 @@ function Footer() {
           </div>
         </div>
         <div className="p-4 text-center glassmorphism">
-          <a className="text-black" href="" aria-label="my link">
-            © 2024 Copyright:
-            {' '}
-            Nataly Dreams
+          <a className="text-black" href="https://github.com/ovr58" target="_blank" rel="noreferrer" aria-label="my link">
+            © 2024
+            {'/'}
+            made by Evgenii Sukharnikov
           </a>
         </div>
       </div>

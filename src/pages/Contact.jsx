@@ -24,8 +24,6 @@ const Contact = () => {
   const toglerTexts = useMemo(() => localize(lang, 'toglerTexts'), [lang])
   const platforms = useMemo(() => localize(lang, 'platforms'), [lang])
 
-  console.log('PLATFORMS - ', platforms)
-
   const handleChange = ({ target: { name, value } }) => {
     setForm({ ...form, [name]: value })
   }

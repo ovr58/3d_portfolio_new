@@ -72,7 +72,6 @@ const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props })
         child.geometry.computeBoundingBox() // вычисляем актуальный бокс для геометрии объекта с которым работаем
         child.geometry.boundingBox.getCenter(bbCenter)
         child.localToWorld(bbCenter)
-        console.log('IDLE POINT - ', child.name, bbCenter)
         colliderPointsArray.push({
           position: bbCenter,
           stageName: child.name.replace('IdlePoint', '')
@@ -130,7 +129,6 @@ const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props })
                 appStore.stage = (Number(other.target.colliderObject.name)-1),
                 appStore.angle = angle.toArray()
               )}
-            onIntersectionExit={(other) => console.log('Exited sensor', other)}
           />
         ))
       }

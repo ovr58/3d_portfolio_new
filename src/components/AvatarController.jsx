@@ -106,7 +106,6 @@ function AvatarController({coordinates, stage, isRotating, setIsRotating, angle,
       }
   
       if (movement.x !== 0 || movement.z !== 0) {
-        console.log()
         characterRotationTarget.current = Math.atan2(movement.x, movement.z)
         vel.x =
         Math.sin(rotationTarget.current + characterRotationTarget.current) *
@@ -119,7 +118,6 @@ function AvatarController({coordinates, stage, isRotating, setIsRotating, angle,
         const numOfAnimation = Math.floor(Math.random()*4)
         if (!animations.includes(currentAnimation.current)) {
           speed = 0
-          console.log('SET IDLE ANIMATION')
           setAnimation(animations[numOfAnimation])
           currentAnimation.current = animations[numOfAnimation]
         }
