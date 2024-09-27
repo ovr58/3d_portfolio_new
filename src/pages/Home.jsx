@@ -84,7 +84,7 @@ function Home() {
           <hemisphereLight skyColor='#b1e1ff' groundColor='#000000' intensity={1}/>
           <Environment preset="sunset" />
           <SkyAndClouds isRotating={isRotating} />
-          <Physics debug={true} key={'cottageMap'}>
+          <Physics debug={false} key={'cottageMap'}>
             <Cottage 
               stage = {stage}
               coordinates = {coordinates}
