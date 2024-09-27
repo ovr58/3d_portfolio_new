@@ -171,8 +171,6 @@ const Contact = () => {
               type='submit'
               disabled={loading}
               className='btn'
-              onFocus={handleFocus}
-              onBlur={handleBlur}
             >
               {loading ? contactText.form_sending_message : contactText.form_sent_message}
             </button>
