@@ -19,7 +19,7 @@ function Footer() {
             <a
               href="https://www.facebook.com/matveeva.natalya"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-black uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="my facebook page"
@@ -37,7 +37,7 @@ function Footer() {
             <a
               href="https://twitter.com/noyeryadom78832/"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-black uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="i am on twitter or x"
@@ -55,7 +55,7 @@ function Footer() {
             <a
               href="https://instagram.com/nd_visualisation"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-black uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="my instagram"
@@ -73,7 +73,7 @@ function Footer() {
             <a
               href="https://boosty.to/3dnataly"
               type="button"
-              className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
+              className="m-1 h-9 w-9 rounded-full border-2 border-black uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-blue-200 focus:outline-none focus:ring-0 content-center"
               data-te-ripple-init
               data-te-ripple-color="light"
               aria-label="my support plan"

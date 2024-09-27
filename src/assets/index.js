@@ -55,6 +55,9 @@ import kworkIcon from './kwork.png'
 import linkedinIcon from './linkedin.ico'
 import behanceIcon from './behance.ico'
 import upworkIcon from './Upwork.png'
+import funkMusik from './funk-244708.mp3'
+import soundon from './soundon.png'
+import soundoff from './soundoff.png'
 
 import ka from './ka.svg'
 import ru from './ru.svg'
@@ -116,5 +119,8 @@ export {
   kworkIcon,
   linkedinIcon,
   behanceIcon,
-  upworkIcon
+  upworkIcon,
+  funkMusik,
+  soundon,
+  soundoff
 }

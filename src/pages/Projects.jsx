@@ -28,7 +28,7 @@ const Projects = () => {
       </p>
 
       <div className='grid grid-cols-1  lg:grid-cols-2 gap-4 mt-10'>
-        {projects.map((project) => (
+        {projects.sort(() => Math.random() - 0.5).map((project) => (
           <div className='lg:w-[400px] w-full' key={project.name}>
             <div className="mt-4 flex flex-wrap gap-2">
               {project.tags.map((tag) => (

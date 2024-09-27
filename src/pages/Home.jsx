@@ -9,13 +9,26 @@ import { Physics } from "@react-three/rapier"
 import { Vector3 } from 'three'
 import { useSnapshot } from "valtio"
 import appStore from '../store'
+import { funkMusik, soundoff, soundon } from "../assets"
 
 function Home() {
 
+  const bgAudio = useRef(new Audio(funkMusik))
+  bgAudio.current.volume = 0.4
+  bgAudio.current.loop = true
   const shadowCameraRef = useRef()
   const appState = useSnapshot(appStore)
   const stage = appState.stage
   const [ angle, setAngle ] = useState(new Vector3(...appState.angle).normalize())
+  const [ isPlaying, setIsPlaying ] = useState(false)
+
+  useEffect(() => {
+    isPlaying && bgAudio.current.play()
+    
+    return () => {
+      bgAudio.current.pause()
+    }
+  }, [isPlaying])
 
   const coordinates = [
     [-16.6, -1.7, 20], 
@@ -30,6 +43,7 @@ function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
+      setIsPlaying(true)
       setIsRotating(true)
     }, 19000); // 3000 миллисекунд = 3 секунды
 
@@ -38,7 +52,7 @@ function Home() {
 
   return (
     <section className='w-full h-screen realtive'>
-      <div className = 'absolute top-28 sm:top-24 left-0 right-0 z-10 flex items-center justify-center'>
+      <div className = 'absolute top-28 sm:top-24 left-0 right-0 z-20 flex items-center justify-center'>
         {<HomeInfo stage={stage} />}
       </div>
       <Canvas
@@ -101,6 +115,14 @@ function Home() {
         </Suspense>
         <Preload all />
       </Canvas>
+      <div className={`absolute bottom-24 left-6 ${isPlaying && 'animate-bounce'}`}>
+        <img
+          src={!isPlaying ? soundoff : soundon}
+          alt='jukebox'
+          onClick={() => setIsPlaying(!isPlaying)}
+          className='w-10 h-10 cursor-pointer object-contain'
+        />
+      </div>
     </section>
   )
 }

@@ -91,9 +91,9 @@ const Navbar = () => {
           </div>
           {toggle ?
            <div
-            className='p-2 bg-slate-200 absolute top-20 right-30 w-[140px] z-10 rounded-xl grid grid-cols-1'
+            className='p-2 bg-slate-200 absolute top-20 right-30 w-[140px] z-30 rounded-xl grid grid-cols-1'
             >
-            <NavigationLinks mode={'list-none flex justify-end flex-col '} />
+            <NavigationLinks mode={'list-none flex justify-end flex-col z-30'} />
           </div> : ''}
         </div>}
       </div>
