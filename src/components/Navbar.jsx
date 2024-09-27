@@ -5,6 +5,7 @@ import LangMenu from '../utils/LangMenu'
 import { logo } from '../assets'
 import { useLang } from '../context/LangContext'
 import { NavLink } from 'react-router-dom'
+import Socials from './Socials'
 
 const NavigationLinks = ({mode}) => {
 
@@ -95,6 +96,9 @@ const Navbar = () => {
             className='p-2 bg-slate-200 absolute top-20 right-30 w-[140px] z-50 rounded-xl grid grid-cols-1'
             >
             <NavigationLinks mode={'list-none flex justify-end flex-col z-50'} />
+            <div className='grid grid-cols-2 place-items-center'>
+              <Socials />
+            </div>
           </div> : ''}
         </div>}
       </div>

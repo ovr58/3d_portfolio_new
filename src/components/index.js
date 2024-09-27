@@ -8,5 +8,6 @@ import Alert from './Alert'
 import CTA from './CTA'
 import TestimonialCard from "./TestimonialCard"
 import Togler from "./Togler"
+import Socials from './Socials.jsx'
 
-export { Togler, Navbar, Footer, SuspenseVisual, AvatarController, HomeInfo, ServiceCard, Alert, CTA, TestimonialCard }
+export { Socials,Togler, Navbar, Footer, SuspenseVisual, AvatarController, HomeInfo, ServiceCard, Alert, CTA, TestimonialCard }

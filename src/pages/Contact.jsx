@@ -25,11 +25,9 @@ const Contact = () => {
   const platforms = useMemo(() => localize(lang, 'platforms'), [lang])
 
   const handleChange = ({ target: { name, value } }) => {
+    if (currentAnimation != 'greating') setCurrentAnimation("greating")
     setForm({ ...form, [name]: value })
   }
-
-  const handleFocus = () => setCurrentAnimation("greating")
-  const handleBlur = () => setCurrentAnimation("thankful")
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -135,8 +133,9 @@ const Contact = () => {
                 required
                 value={form.name}
                 onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+                onClick={() => currentAnimation != 'thankful' && setCurrentAnimation('thankful')}
+                // onFocus={handleFocus}
+                // onBlur={handleBlur}
               />
             </label>
             <label className='text-black-500 font-semibold'>
@@ -149,8 +148,9 @@ const Contact = () => {
                 required
                 value={form.email}
                 onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+                onClick={() => currentAnimation != 'thankful' && setCurrentAnimation('thankful')}
+                // onFocus={handleFocus}
+                // onBlur={handleBlur}
               />
             </label>
             <label className='text-black-500 font-semibold'>
@@ -162,8 +162,9 @@ const Contact = () => {
                 placeholder={contactText.form_your_message_placeholder}
                 value={form.message}
                 onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+                onClick={() => currentAnimation != 'thankful' && setCurrentAnimation('thankful')}
+                // onFocus={handleFocus}
+                // onBlur={handleBlur}
               />
             </label>
 
