@@ -45,7 +45,7 @@ function AvatarController({coordinates, stage, isRotating, setIsRotating, angle,
       // Устанавливаем начальную позицию
       const { x, y, z } = rb.current.translation()
       if (x !== coordinates[stage][0] && y !== coordinates[stage][1] && z !== coordinates[stage][2]) {
-        rb.current.setTranslation({ x: coordinates[stage][0], y: 2, z: coordinates[stage][2] }, true)
+        rb.current.setTranslation({ x: coordinates[stage][0], y: 6.5, z: coordinates[stage][2] }, true)
       }
     }
   }, [])
