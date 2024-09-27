@@ -26,7 +26,7 @@ const LangMenu = () => {
       <MenuItems 
         anchor="bottom end"
         transition
-        className="z-10 origin-top transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+        className="bg-slate-200 rounded-xl z-50 origin-top transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
       >
         <MenuItem>
           <button 

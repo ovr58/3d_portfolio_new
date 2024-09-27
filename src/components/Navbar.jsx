@@ -56,6 +56,7 @@ const Navbar = () => {
         <img src={logo} alt='logo' className='w-14 h-14 rounded-lg bg-white items-center justify-center flex font-bold shadow-md'/>
       </NavLink>
     <nav className='flex text-lg gap-7 font-medium'>
+      <LangMenu />
       <div className="w-full flex justify-between items-center mx-auto">
         {windowWidth >=640 ? <NavigationLinks mode={'list-none flex flex-row gap-5'} /> : 
         <div className="flex flex-1 justify-end items-center cursor-pointer" onClick={() => setToggle(!toggle)}>
@@ -91,13 +92,12 @@ const Navbar = () => {
           </div>
           {toggle ?
            <div
-            className='p-2 bg-slate-200 absolute top-20 right-30 w-[140px] z-30 rounded-xl grid grid-cols-1'
+            className='p-2 bg-slate-200 absolute top-20 right-30 w-[140px] z-50 rounded-xl grid grid-cols-1'
             >
-            <NavigationLinks mode={'list-none flex justify-end flex-col z-30'} />
+            <NavigationLinks mode={'list-none flex justify-end flex-col z-50'} />
           </div> : ''}
         </div>}
       </div>
-      <LangMenu />
     </nav>
     </header>
   )

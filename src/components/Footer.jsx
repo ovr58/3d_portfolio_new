@@ -14,7 +14,7 @@ function Footer() {
   return (
     <footer className = 'footer'>
       <div className="footer-container">
-        <div className="hidden sm:flex px-6 pt-2 glassmorphism">
+        <div className="flex px-6 pt-2 glassmorphism">
           <div className="mb-2 flex justify-center">
             <a
               href="https://www.facebook.com/matveeva.natalya"
@@ -117,7 +117,7 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="p-4 text-center glassmorphism">
+        <div className="hidden sm:flex p-4 text-center glassmorphism">
           <a className="text-black" href="https://github.com/ovr58" target="_blank" rel="noreferrer" aria-label="my link">
             © 2024
             {'/'}

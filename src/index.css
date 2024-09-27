@@ -51,7 +51,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .header {
-    @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
+    @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-50 right-0 left-0;
   }
 
   .footer {
@@ -59,7 +59,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 
   .footer-container {
-    @apply flex flex-wrap gap-7 items-center sm:justify-between justify-evenly;
+    @apply flex gap-4 items-center sm:justify-between justify-evenly;
   }
 
   .info-box {
