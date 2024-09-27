@@ -33,7 +33,6 @@ import response from './response.png'
 import workme from './workme.png'
 import loveyou from './loveyou.png'
 
-import cottage from './cottage.jpeg'
 import cottageScene from './3d/cottage.glb'
 import skyScene from './3d/sky.glb'
 import avatarNatali from './3d/avatarNatali.glb'
@@ -90,7 +89,6 @@ export {
   response,
   workme,
   loveyou,
-  cottage,
   interior,
   kitchen,
   whatsup,

@@ -14,13 +14,11 @@ import {
   substance,
   illustrator,
   sketchup,
-  unity,
   hello,
   workme,
   response,
   loveyou,
   coreldraw,
-  cottage,
   interior,
   kitchen,
   client1,
@@ -174,12 +172,12 @@ const technologies = [
     anotation:
       'SketchUp is a suite of subscription products that include SketchUp Pro Desktop, a 3D modeling Computer-Aided Design (CAD) program for a broad range of drawing and design applications — including architectural, interior design, industrial and product design, landscape architecture, civil and mechanical engineering, theater, film and video game development.',
   },
-  {
-    name: 'Unity',
-    icon: unity,
-    anotation:
-      'Unity is a cross-platform game engine developed by Unity Technologies, first announced and released in June 2005 at Apple Worldwide Developers Conference as a Mac OS X game engine. The engine has since been gradually extended to support a variety of desktop, mobile, console and virtual reality platforms. It is particularly popular for iOS and Android mobile game development, is considered easy to use for beginner developers, and is popular for indie game development.',
-  },
+  // {
+  //   name: 'Unity',
+  //   icon: unity,
+  //   anotation:
+  //     'Unity is a cross-platform game engine developed by Unity Technologies, first announced and released in June 2005 at Apple Worldwide Developers Conference as a Mac OS X game engine. The engine has since been gradually extended to support a variety of desktop, mobile, console and virtual reality platforms. It is particularly popular for iOS and Android mobile game development, is considered easy to use for beginner developers, and is popular for indie game development.',
+  // },
 ];
 
 const experience_header = ['KEYPOINTS OF OUR FUTURE COOPERATION', 'Mastery and Result', 'Support me!']
