@@ -43,7 +43,6 @@ function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsPlaying(true)
       setIsRotating(true)
     }, 19000); // 3000 миллисекунд = 3 секунды
 
