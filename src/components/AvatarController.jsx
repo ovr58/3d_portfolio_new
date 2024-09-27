@@ -41,13 +41,18 @@ function AvatarController({coordinates, stage, isRotating, setIsRotating, angle,
   const [ rotationSpeed, setRotationSpeed ] = useState(0)
 
   useEffect(() => {
-    if (rb.current) {
-      // Устанавливаем начальную позицию
-      const { x, y, z } = rb.current.translation()
-      if (x !== coordinates[stage][0] && y !== coordinates[stage][1] && z !== coordinates[stage][2]) {
-        rb.current.setTranslation({ x: coordinates[stage][0], y: 6.5, z: coordinates[stage][2] }, true)
+    const timer = setTimeout(() => {
+      if (rb.current) {
+        // Устанавливаем начальную позицию
+        const { x, y, z } = rb.current.translation()
+        if ((x !== coordinates[stage][0] && z !== coordinates[stage][2]) || (y<2 || y>=4.7)) {
+          console.log('SET TRANSLATION')
+          rb.current.setTranslation({ x: coordinates[stage][0], y: 2, z: coordinates[stage][2] }, true)
+        }
       }
-    }
+    }, 1000)
+
+    return () => clearTimeout(timer)
   }, [])
 
   useFrame(({ camera }) => {
@@ -137,7 +142,7 @@ function AvatarController({coordinates, stage, isRotating, setIsRotating, angle,
   })
 
   return (
-    <RigidBody type='dynamic' linearDamping={0.3} position={[-16.5, 2.7, 20]} colliders={false} lockRotations ref={rb}>
+    <RigidBody type='dynamic' linearDamping={0.3} colliders={false} lockRotations ref={rb}>
         <group ref={container} >
             <group ref={character}>
                 <NataliAvatar

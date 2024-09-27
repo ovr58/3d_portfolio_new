@@ -44,13 +44,13 @@ function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsRotating(true)
-    }, 19000); // 3000 миллисекунд = 3 секунды
+    }, 19000)
 
     return () => clearTimeout(timer);
   }, [stage])
 
   return (
-    <section className='w-full h-screen realtive'>
+    <section className='w-full h-screen relative'>
       <div className = 'absolute top-28 sm:top-24 left-0 right-0 z-20 flex items-center justify-center'>
         {<HomeInfo stage={stage} />}
       </div>
@@ -84,9 +84,10 @@ function Home() {
           <hemisphereLight skyColor='#b1e1ff' groundColor='#000000' intensity={1}/>
           <Environment preset="sunset" />
           <SkyAndClouds isRotating={isRotating} />
-          <Physics debug={false} key={'cottageMap'}>
+          <Physics debug={true} key={'cottageMap'}>
             <Cottage 
               stage = {stage}
+              coordinates = {coordinates}
               isRotating = {isRotating}
               setIsRotating = {setIsRotating}
               angle = {angle}

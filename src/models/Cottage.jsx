@@ -10,10 +10,9 @@ import { useFrame, useThree } from '@react-three/fiber'
 import appStore from '../store'
 
 
-const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props }) => {
+const Cottage = ({coordinates, stage, isRotating, setIsRotating, angle, setAngle, ...props }) => {
 
   const { gl, camera } = useThree()
-  
   const cottageRef = useRef()
   const cameraTarget = useRef()
   const cameraPosition = useRef()
@@ -21,8 +20,6 @@ const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props })
   const cameraLookAtWorldPosition = useRef(new THREE.Vector3())
   const cameraLookAt = useRef(new THREE.Vector3(0, 0, 0))
   const sensorRef = useRef([])
-
-  const [ colliderPoints, setColliderPoints ] = useState([])
 
   const handlePointerDown = (event) => {
     event.stopPropagation()
@@ -64,28 +61,6 @@ const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props })
 
   const { scene } = useMemo(() => useGLTF(cottageScene))
 
-  useEffect(() => {
-    const colliderPointsArray = []
-    scene.traverse((child) => {
-      if (child.name.includes('IdlePoint')) {
-        const bbCenter = new THREE.Vector3()
-        child.geometry.computeBoundingBox() // вычисляем актуальный бокс для геометрии объекта с которым работаем
-        child.geometry.boundingBox.getCenter(bbCenter)
-        child.localToWorld(bbCenter)
-        colliderPointsArray.push({
-          position: bbCenter,
-          stageName: child.name.replace('IdlePoint', '')
-        })
-        child.visible = false
-        
-      }
-      if (child.isMesh) {
-        child.castShadow = true
-        child.receiveShadow = true
-      }
-    })
-    setColliderPoints(colliderPointsArray)
-  }, [cottageRef.current])
 
   useFrame(() => {
 
@@ -107,30 +82,30 @@ const Cottage = ({stage, isRotating, setIsRotating, angle, setAngle, ...props })
 
   return (
     <group
-      key={`group${colliderPoints.toString()}`}
+      key={`group${coordinates.toString()}`}
     >
       <group ref={cameraTarget} position={[0, 9.5, 0]} />
       <group ref={cameraPosition} position-x={-30} position-y={15} position-z={30} />
       <RigidBody type='fixed' colliders='trimesh' >
         <primitive object={scene} {...props} ref={cottageRef} />
       </RigidBody>
-      {colliderPoints.length > 0 &&
-        colliderPoints.map((point, i) => (
-          <CapsuleCollider
-            ref = {el => (sensorRef.current[i] = el)}
-            key={`${i}sensor`}
-            position={point.position}
-            args={[0.6, 0.6]}
-            name={point.stageName}
-            sensor
-            onIntersectionEnter={
-              (other) => (
-                setIsRotating(false), 
-                appStore.stage = (Number(other.target.colliderObject.name)-1),
-                appStore.angle = angle.toArray()
-              )}
-          />
-        ))
+      {coordinates.map((point, i) => (
+        <CapsuleCollider
+          ref = {el => (sensorRef.current[i] = el)}
+          key={`${i}sensor`}
+          position={[point[0], 0.5, point[2]]}
+          args={[0.6, 0.6]}
+          name={`${i}`}
+          sensor
+          onIntersectionEnter={
+            (other) => (
+              setIsRotating(false), 
+              appStore.stage = (Number(other.target.colliderObject.name)),
+              appStore.angle = angle.toArray()
+            )}
+        />
+      )
+      )
       }
     </group>
   )
