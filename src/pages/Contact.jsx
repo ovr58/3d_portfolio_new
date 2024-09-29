@@ -111,7 +111,7 @@ const Contact = () => {
           />
         </Suspense>
       </Canvas>
-      <div className='absolute top-28 sm:left-16 sm:min-w-[40%] min-w-[80%] rounded-sm h-[60%] glassmorphism p-10 overflow-y-auto overflow-x-hidden'>
+      <div className='absolute place-content-center top-28 sm:left-16 sm:min-w-[40%] min-w-[80%] rounded-sm min-h-[60%] glassmorphism mx-5 px-10 overflow-y-auto overflow-x-hidden'>
         <div className = 'flex sm:flex-row flex-wrap justify-between'>
           <h1 className='head-text'>{contactText.get_in_touch}</h1>
           <Togler labelTexts = {toglerTexts} value = {mailContact} setOnFunction = {setMailContact} />
@@ -177,7 +177,7 @@ const Contact = () => {
             </button>
           </form>
           :
-          <div className='mt-5 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-7 lg:gap-7 mx-auto'>
+          <div className='w-full place-items-center mt-5 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-7 lg:gap-7 mx-auto'>
           {platforms.map((platform, i) => (
             <Link 
               to={platform.link} 
