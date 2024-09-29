@@ -111,7 +111,7 @@ const Contact = () => {
           />
         </Suspense>
       </Canvas>
-      <div className='absolute top-28 sm:left-16 sm:min-w-[40%] min-w-[80%] rounded-sm h-[60%] glassmorphism drop-shadow-md p-10 overflow-y-auto overflow-x-hidden'>
+      <div className='absolute top-28 sm:left-16 sm:min-w-[40%] min-w-[80%] rounded-sm h-[60%] glassmorphism p-10 overflow-y-auto overflow-x-hidden'>
         <div className = 'flex sm:flex-row flex-wrap justify-between'>
           <h1 className='head-text'>{contactText.get_in_touch}</h1>
           <Togler labelTexts = {toglerTexts} value = {mailContact} setOnFunction = {setMailContact} />
