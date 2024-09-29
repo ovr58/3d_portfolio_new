@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber"
-import { Suspense, useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useMemo, useRef, useState } from "react"
 import { AvatarController, HomeInfo, SuspenseVisual } from "../components"
 import Cottage from "../models/Cottage"
 import { Environment, OrthographicCamera, Preload } from "@react-three/drei"
@@ -13,9 +13,9 @@ import { funkMusik, soundoff, soundon } from "../assets"
 
 function Home() {
 
-  const bgAudio = useRef(new Audio(funkMusik))
-  bgAudio.current.volume = 0.4
-  bgAudio.current.loop = true
+  const bgAudio = useMemo(() => new Audio(funkMusik))
+  bgAudio.volume = 0.4
+  bgAudio.loop = true
   const shadowCameraRef = useRef()
   const appState = useSnapshot(appStore)
   const stage = appState.stage
@@ -23,10 +23,10 @@ function Home() {
   const [ isPlaying, setIsPlaying ] = useState(false)
 
   useEffect(() => {
-    isPlaying && bgAudio.current.play()
+    isPlaying && bgAudio.play()
     
     return () => {
-      bgAudio.current.pause()
+      bgAudio.pause()
     }
   }, [isPlaying])
 
